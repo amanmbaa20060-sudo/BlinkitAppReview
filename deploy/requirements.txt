@@ -1,0 +1,3 @@
+# Render / local pipeline dependencies (not used by Vercel)
+langdetect>=1.0.9
+python-dotenv>=1.0.0

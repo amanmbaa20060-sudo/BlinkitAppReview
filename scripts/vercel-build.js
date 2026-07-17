@@ -1,6 +1,7 @@
 /**
  * Copy the Phase 5 static dashboard into /public for Vercel.
- * Avoids Python auto-detection from root requirements.txt.
+ * Publishes only static dashboard files. Python deps live under deploy/
+ * and are excluded from Vercel via .vercelignore.
  */
 const fs = require("fs");
 const path = require("path");

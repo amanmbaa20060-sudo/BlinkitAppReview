@@ -19,7 +19,7 @@ services:
     runtime: python
     plan: free
     schedule: "0 6 * * 1"
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r deploy/requirements.txt
     startCommand: python scripts/run_pipeline.py
     envVars:
       - key: PYTHON_VERSION

@@ -1,0 +1,23 @@
+# Exclude anything that makes Vercel treat this repo as a Python app.
+# Frontend is static (phase5 → public via npm run build).
+
+requirements.txt
+**/requirements.txt
+pyproject.toml
+Pipfile
+Pipfile.lock
+**/*.py
+**/__pycache__/
+
+phase0/
+phase1/
+phase2/
+phase3/
+phase4/
+docs/
+shared/
+deploy/
+render.yaml
+start.py
+.env
+.env.*
