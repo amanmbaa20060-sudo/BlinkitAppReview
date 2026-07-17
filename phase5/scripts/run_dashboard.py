@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import functools
 import http.server
+import os
 import socket
 import socketserver
 import sys
@@ -64,14 +65,28 @@ def pick_port(preferred: int) -> int:
     raise SystemExit(f"No free port found in range {preferred}-{preferred + 24}")
 
 
+def serve_host() -> str:
+    return "0.0.0.0" if os.environ.get("PORT") else "127.0.0.1"
+
+
+def resolve_port(preferred: int) -> int:
+    if os.environ.get("PORT"):
+        return int(os.environ["PORT"])
+    return pick_port(preferred)
+
+
 def serve(port: int) -> None:
+    host = serve_host()
     handler = functools.partial(DashboardHTTPRequestHandler, directory=str(PHASE5))
-    with ThreadingHTTPServer(("127.0.0.1", port), handler) as httpd:
-        url = f"http://127.0.0.1:{port}/"
-        print(f"Serving Category Expansion Insights at {url}")
-        print(f"Also try: http://localhost:{port}/")
-        print("Press Ctrl+C to stop.")
-        threading.Timer(0.8, lambda: webbrowser.open(url)).start()
+    with ThreadingHTTPServer((host, port), handler) as httpd:
+        url = f"http://127.0.0.1:{port}/" if host == "127.0.0.1" else f"http://0.0.0.0:{port}/"
+        print(f"Serving Category Expansion Insights at {url}", flush=True)
+        if host == "127.0.0.1":
+            print(f"Also try: http://localhost:{port}/")
+            print("Press Ctrl+C to stop.")
+            threading.Timer(0.8, lambda: webbrowser.open(f"http://127.0.0.1:{port}/")).start()
+        else:
+            print("Render production mode: listening on 0.0.0.0", flush=True)
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
@@ -97,8 +112,8 @@ def main() -> None:
             if not data_file.exists():
                 raise SystemExit("dashboard-data.js is missing and build failed.") from exc
 
-    port = pick_port(args.port)
-    if port != args.port:
+    port = resolve_port(args.port)
+    if not os.environ.get("PORT") and port != args.port:
         print(f"Port {args.port} is busy. Using {port} instead.")
 
     time.sleep(0.1)

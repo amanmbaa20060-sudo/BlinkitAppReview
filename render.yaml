@@ -2,19 +2,16 @@
 # Sync this file from the Render Dashboard or connect the repo as a Blueprint.
 
 services:
-  # Interim dashboard host until the frontend moves to Vercel.
+  # Static dashboard — recommended for phase5/ (no port binding needed).
   - type: web
     name: blinkit-dashboard
-    runtime: python
-    plan: free
-    buildCommand: pip install -r requirements.txt && python phase5/scripts/build_dashboard_data.py
-    startCommand: python phase5/scripts/serve_render.py
-    healthCheckPath: /
-    envVars:
-      - key: PYTHON_VERSION
-        value: "3.11.9"
-      - key: RUN_ID
-        value: 2026-07-16-weekly
+    runtime: static
+    buildCommand: python phase5/scripts/build_dashboard_data.py
+    staticPublishPath: phase5
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
 
   # Weekly pipeline: ingest -> theme -> insights -> validate -> dashboard bundle.
   - type: cron
