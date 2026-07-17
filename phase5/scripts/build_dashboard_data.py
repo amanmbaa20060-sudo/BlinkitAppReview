@@ -148,6 +148,104 @@ def methodology_sections() -> list[dict[str, str]]:
     ]
 
 
+def build_llm_status(
+    insights: list[dict[str, Any]],
+    enriched: list[dict[str, Any]],
+    validation: dict[str, Any],
+) -> dict[str, Any]:
+    synthesis = Counter(str(i.get("synthesis_source") or "unknown") for i in insights)
+    models = Counter(str(i.get("llm_model") or "none") for i in insights if i.get("llm_model"))
+    theme_methods = Counter(
+        str(r.get("theme_assignment_method") or "unknown")
+        for r in enriched
+        if r.get("theme_assignment_method")
+    )
+    assignment_sources: Counter[str] = Counter()
+    for row in enriched:
+        for theme in row.get("themes") or []:
+            src = theme.get("assignment_source") or theme.get("source")
+            if src:
+                assignment_sources[str(src)] += 1
+
+    groq_insight_count = synthesis.get("groq_llm", 0)
+    llm_used = groq_insight_count > 0 or any("groq" in m for m in theme_methods)
+
+    sampling = (validation.get("checks") or {}).get("sampling_qa") or {}
+    faithfulness = (validation.get("checks") or {}).get("faithfulness") or {}
+    gov = validation.get("governance") or {}
+
+    return {
+        "ok": True,
+        "run_id": RUN_ID,
+        "llm_used_in_pipeline": llm_used,
+        "provider": "groq" if llm_used else None,
+        "models": dict(models),
+        "insight_synthesis": dict(synthesis),
+        "theme_assignment_methods": dict(theme_methods),
+        "theme_assignment_sources": dict(assignment_sources),
+        "validation_judges": {
+            "sampling_qa_method": sampling.get("judge_method") or sampling.get("method"),
+            "sampling_qa_use_llm": (gov.get("sampling_qa") or {}).get("use_llm_judge"),
+            "faithfulness_method": faithfulness.get("judge_method") or faithfulness.get("method"),
+            "faithfulness_use_llm": (gov.get("faithfulness") or {}).get("use_llm_judge"),
+        },
+        "summary": (
+            f"Groq LLM used for {groq_insight_count}/{len(insights)} published insights"
+            if llm_used
+            else "No Groq LLM markers found in published artifacts (template/heuristic fallback)"
+        ),
+        "checked_at": None,
+        "live_api": None,
+    }
+
+
+def write_llm_status(status: dict[str, Any]) -> Path:
+    out = PHASE5 / "llm-status.json"
+    out.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return out
+
+
+def llm_status_from_existing_bundle() -> dict[str, Any] | None:
+    """Best-effort status from committed dashboard-data.js when pipeline files are absent."""
+    bundle = PHASE5 / "dashboard-data.js"
+    if not bundle.exists():
+        return None
+    text = bundle.read_text(encoding="utf-8")
+    prefix = "window.DASHBOARD_DATA = "
+    if not text.startswith(prefix):
+        return None
+    raw = text[len(prefix) :].rstrip().rstrip(";")
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError:
+        return None
+    llm = payload.get("llm")
+    if isinstance(llm, dict):
+        return llm
+    insights = payload.get("discoveryQna") or []
+    synthesis = Counter(str(i.get("synthesis_source") or "unknown") for i in insights)
+    models = Counter(str(i.get("llm_model") or "none") for i in insights if i.get("llm_model"))
+    groq_count = synthesis.get("groq_llm", 0)
+    return {
+        "ok": True,
+        "run_id": (payload.get("meta") or {}).get("run_id") or RUN_ID,
+        "llm_used_in_pipeline": groq_count > 0,
+        "provider": "groq" if groq_count else None,
+        "models": dict(models),
+        "insight_synthesis": dict(synthesis),
+        "theme_assignment_methods": {},
+        "theme_assignment_sources": {},
+        "validation_judges": {},
+        "summary": (
+            f"Groq LLM used for {groq_count}/{len(insights)} published insights"
+            if groq_count
+            else "No Groq LLM markers found in dashboard bundle"
+        ),
+        "checked_at": None,
+        "live_api": None,
+    }
+
+
 def build_payload() -> dict[str, Any]:
     metrics = load_json(ROOT / "phase2" / "data" / "themes" / "v1" / RUN_ID / "metrics.json")
     enriched = load_jsonl(ROOT / "phase2" / "data" / "enriched" / RUN_ID / "enriched_feedback.jsonl")
@@ -155,6 +253,7 @@ def build_payload() -> dict[str, Any]:
     validation = load_json(ROOT / "phase4" / "reports" / RUN_ID / "validation_report.json")
     drift = load_json(ROOT / "phase4" / "reports" / RUN_ID / "drift_baseline.json")
 
+    llm_status = build_llm_status(insights, enriched, validation)
     families = collect_theme_family_metrics(metrics)
     feedback_segments = {
         row["feedback_id"]: [segment for segment in (row.get("segments") or []) if segment != "unspecified"]
@@ -284,6 +383,7 @@ def build_payload() -> dict[str, Any]:
             "segments": all_segments,
             "themeFamilies": [f["family_label"] for f in families],
         },
+        "llm": llm_status,
     }
     return payload
 
@@ -291,6 +391,10 @@ def build_payload() -> dict[str, Any]:
 def main() -> None:
     out = PHASE5 / "dashboard-data.js"
     if not pipeline_inputs_available():
+        status = llm_status_from_existing_bundle()
+        if status:
+            write_llm_status(status)
+            print(f"Wrote {PHASE5 / 'llm-status.json'} from committed dashboard bundle")
         if out.exists():
             print(
                 f"Pipeline outputs for run_id={RUN_ID} are not present; "
@@ -308,7 +412,9 @@ def main() -> None:
         "window.DASHBOARD_DATA = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n",
         encoding="utf-8",
     )
+    status_path = write_llm_status(payload["llm"])
     print(f"Wrote {out}")
+    print(f"Wrote {status_path}")
 
 
 if __name__ == "__main__":

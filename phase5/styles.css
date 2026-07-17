@@ -220,6 +220,39 @@ input {
   box-shadow: 0 0 0 4px rgba(139, 207, 31, 0.15);
 }
 
+.llm-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.llm-badge-pending {
+  color: #64748b;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.llm-badge-on {
+  color: #166534;
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
+.llm-badge-off {
+  color: #9a3412;
+  background: #ffedd5;
+  border-color: #fdba74;
+}
+
+.llm-badge-warn {
+  color: #92400e;
+  background: #fef3c7;
+  border-color: #fcd34d;
+}
+
 .divider {
   width: 1px;
   height: 20px;

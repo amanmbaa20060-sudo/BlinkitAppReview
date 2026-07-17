@@ -1157,6 +1157,7 @@ function init() {
     renderAllViews();
     updateActiveView();
     bindGlobalEvents();
+    void loadLlmStatus();
     const boot = document.getElementById("boot-status");
     if (boot) boot.classList.add("hidden");
   } catch (error) {
@@ -1173,6 +1174,97 @@ function init() {
       </main>
     `;
   }
+}
+
+function llmBadgeEl() {
+  return document.getElementById("llm-status-badge");
+}
+
+function setLlmBadge(status, detail) {
+  const badge = llmBadgeEl();
+  if (!badge) return;
+  badge.classList.remove("llm-badge-pending", "llm-badge-on", "llm-badge-off", "llm-badge-warn");
+  if (status === "on") {
+    badge.classList.add("llm-badge-on");
+    badge.textContent = "LLM: Groq active";
+  } else if (status === "off") {
+    badge.classList.add("llm-badge-off");
+    badge.textContent = "LLM: not used";
+  } else if (status === "warn") {
+    badge.classList.add("llm-badge-warn");
+    badge.textContent = "LLM: check failed";
+  } else {
+    badge.classList.add("llm-badge-pending");
+    badge.textContent = "LLM: checking…";
+  }
+  badge.title = detail || badge.textContent;
+}
+
+async function fetchJson(url) {
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`${url} → HTTP ${response.status}`);
+  }
+  return response.json();
+}
+
+async function loadLlmStatus() {
+  const apiBase = String((window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || "").replace(/\/$/, "");
+  let artifactStatus = null;
+  let liveStatus = null;
+  const notes = [];
+
+  try {
+    // Always visible in DevTools → Network (static provenance from pipeline).
+    artifactStatus = await fetchJson(`llm-status.json?t=${Date.now()}`);
+    notes.push(artifactStatus.summary || "Loaded llm-status.json");
+  } catch (error) {
+    notes.push(`llm-status.json failed: ${error.message || error}`);
+  }
+
+  if (apiBase) {
+    try {
+      // Live check against Render API (also visible in Network).
+      liveStatus = await fetchJson(`${apiBase}/api/llm-status?ping=1`);
+      const live = liveStatus.live_api || {};
+      if (live.reachable) {
+        notes.push(`Live Groq OK (${live.model || "model unknown"})`);
+      } else if (live.configured === false) {
+        notes.push("Render API: GROQ_API_KEY not configured");
+      } else {
+        notes.push(`Render API Groq check failed: ${live.detail || "unreachable"}`);
+      }
+    } catch (error) {
+      notes.push(`Render /api/llm-status failed: ${error.message || error}`);
+    }
+  } else {
+    notes.push("API_BASE_URL not set — showing pipeline provenance only");
+  }
+
+  const used =
+    Boolean(liveStatus && liveStatus.llm_used_in_pipeline) ||
+    Boolean(artifactStatus && artifactStatus.llm_used_in_pipeline) ||
+    Boolean(data.llm && data.llm.llm_used_in_pipeline);
+
+  const liveOk = liveStatus && liveStatus.live_api && liveStatus.live_api.reachable === true;
+  const liveConfiguredMissing =
+    liveStatus && liveStatus.live_api && liveStatus.live_api.configured === false;
+
+  if (liveOk || used) {
+    setLlmBadge("on", notes.join("\n"));
+  } else if (liveConfiguredMissing || (artifactStatus && artifactStatus.ok === false)) {
+    setLlmBadge("warn", notes.join("\n"));
+  } else if (artifactStatus || liveStatus) {
+    setLlmBadge("off", notes.join("\n"));
+  } else {
+    setLlmBadge("warn", notes.join("\n"));
+  }
+
+  window.__LLM_STATUS__ = {
+    artifact: artifactStatus,
+    live: liveStatus,
+    notes,
+  };
 }
 
 init();

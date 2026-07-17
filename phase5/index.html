@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Category Expansion Insights</title>
-    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div id="boot-status" class="boot-status">Loading dashboard...</div>
@@ -36,6 +36,8 @@
             <span id="run-status">Published insights</span>
             <span class="divider"></span>
             <span id="run-id"></span>
+            <span class="divider"></span>
+            <span id="llm-status-badge" class="llm-badge llm-badge-pending" title="Checking LLM status...">LLM: checking…</span>
             <button class="ghost-button" id="export-summary">Export summary</button>
           </div>
         </header>
@@ -88,7 +90,8 @@
       </div>
     </div>
 
-    <script src="dashboard-data.js?v=3"></script>
-    <script src="app.js?v=3"></script>
+    <script src="config.js?v=4"></script>
+    <script src="dashboard-data.js?v=4"></script>
+    <script src="app.js?v=4"></script>
   </body>
 </html>

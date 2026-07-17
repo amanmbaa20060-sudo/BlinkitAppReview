@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "run_id": "2026-07-16-weekly",
+  "llm_used_in_pipeline": true,
+  "provider": "groq",
+  "models": {
+    "llama-3.3-70b-versatile": 8
+  },
+  "insight_synthesis": {
+    "groq_llm": 8
+  },
+  "theme_assignment_methods": {
+    "groq_llm+keyword_similarity": 1070
+  },
+  "theme_assignment_sources": {
+    "groq_llm+keyword": 1364,
+    "keyword_similarity": 1417,
+    "groq_llm": 146
+  },
+  "validation_judges": {
+    "sampling_qa_method": "groq_llm_with_heuristic_fallback",
+    "sampling_qa_use_llm": true,
+    "faithfulness_method": null,
+    "faithfulness_use_llm": true
+  },
+  "summary": "Groq LLM used for 8/8 published insights",
+  "checked_at": null,
+  "live_api": null
+}

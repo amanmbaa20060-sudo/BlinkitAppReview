@@ -1,7 +1,6 @@
 /**
  * Copy the Phase 5 static dashboard into /public for Vercel.
- * Publishes only static dashboard files. Python deps live under deploy/
- * and are excluded from Vercel via .vercelignore.
+ * Also writes config.js from API_BASE_URL (Render API origin).
  */
 const fs = require("fs");
 const path = require("path");
@@ -42,7 +41,15 @@ function copyRecursive(from, to) {
 fs.rmSync(dest, { recursive: true, force: true });
 copyRecursive(src, dest);
 
-const required = ["index.html", "app.js", "styles.css", "dashboard-data.js"];
+const apiBase = String(process.env.API_BASE_URL || "").replace(/\/$/, "");
+const configJs = `window.APP_CONFIG = ${JSON.stringify(
+  { API_BASE_URL: apiBase },
+  null,
+  2
+)};\n`;
+fs.writeFileSync(path.join(dest, "config.js"), configJs, "utf8");
+
+const required = ["index.html", "app.js", "styles.css", "dashboard-data.js", "llm-status.json", "config.js"];
 for (const file of required) {
   if (!fs.existsSync(path.join(dest, file))) {
     console.error(`Missing required file after copy: ${file}`);
@@ -51,3 +58,4 @@ for (const file of required) {
 }
 
 console.log("Copied phase5/ -> public/ for Vercel static deploy");
+console.log(`API_BASE_URL=${apiBase || "(empty — pipeline provenance only)"}`);
