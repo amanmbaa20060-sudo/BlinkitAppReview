@@ -1,3 +1,4 @@
-# Render / local pipeline dependencies (not used by Vercel)
+# Kept in sync with root requirements.txt for Render Blueprint paths.
+# Prefer: pip install -r requirements.txt
 langdetect>=1.0.9
 python-dotenv>=1.0.0

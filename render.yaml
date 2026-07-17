@@ -2,16 +2,30 @@
 # Sync this file from the Render Dashboard or connect the repo as a Blueprint.
 
 services:
-  # Static dashboard — recommended for phase5/ (no port binding needed).
+  # Static dashboard — no Python build (assets are committed in phase5/).
   - type: web
     name: blinkit-dashboard
     runtime: static
-    buildCommand: python phase5/scripts/build_dashboard_data.py
+    buildCommand: "echo Using committed phase5 dashboard assets"
     staticPublishPath: phase5
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
+
+  # Optional Python web service (binds 0.0.0.0:$PORT).
+  - type: web
+    name: blinkit-dashboard-web
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python start.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: RUN_ID
+        value: 2026-07-16-weekly
 
   # Weekly pipeline: ingest -> theme -> insights -> validate -> dashboard bundle.
   - type: cron
@@ -19,7 +33,7 @@ services:
     runtime: python
     plan: free
     schedule: "0 6 * * 1"
-    buildCommand: pip install -r deploy/requirements.txt
+    buildCommand: pip install -r requirements.txt
     startCommand: python scripts/run_pipeline.py
     envVars:
       - key: PYTHON_VERSION
