@@ -1,0 +1,8 @@
+{
+  "name": "blinkit-app-review",
+  "private": true,
+  "description": "Forces Vercel to treat this monorepo as a static frontend (phase5), not a Python app.",
+  "scripts": {
+    "build": "node scripts/vercel-build.js"
+  }
+}
