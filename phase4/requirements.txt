@@ -1,0 +1,2 @@
+# Phase 4 — Groq LLM judges (optional; falls back to heuristic checks)
+python-dotenv>=1.0.0

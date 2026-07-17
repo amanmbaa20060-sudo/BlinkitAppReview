@@ -1,0 +1,50 @@
+project:
+  name: blinkit-app-review
+  phase: 1
+
+batch:
+  cadence: weekly
+  timezone: Asia/Kolkata
+
+languages:
+  primary: en
+  # Non-English is kept in cleaned corpus but flagged for Phase 2 exclusion
+  analyze_only_primary: true
+
+schema:
+  canonical_version: "1.0.0"
+  path: ../phase0/schema/canonical_feedback_schema.json
+
+storage:
+  fixtures_dir: data/fixtures
+  raw_dir: data/raw
+  cleaned_dir: data/cleaned
+  reports_dir: reports
+
+quality:
+  dedupe_window_days: 30
+  spam_keywords:
+    - buy followers
+    - click here now
+    - crypto giveaway
+    - telegram @
+    - whatsapp me for
+  bot_patterns:
+    - "^as an ai"
+    - "^this is an automated"
+
+sources:
+  play_store:
+    fixture: data/fixtures/play_store.jsonl
+  app_store:
+    fixture: data/fixtures/app_store.jsonl
+  reddit:
+    fixture: data/fixtures/reddit.jsonl
+  product_reviews:
+    fixture: data/fixtures/product_reviews.jsonl
+  social_media:
+    fixture: data/fixtures/social_media.jsonl
+  community_forums:
+    fixture: data/fixtures/community_forums.jsonl
+  quick_commerce_discussions:
+    fixture: data/fixtures/quick_commerce_discussions.jsonl

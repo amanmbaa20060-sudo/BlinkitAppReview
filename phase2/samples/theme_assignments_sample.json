@@ -1,0 +1,1443 @@
+{
+  "purpose": "Phase 4 QA sample of theme assignments",
+  "sample_size": 40,
+  "records": [
+    {
+      "feedback_id": "social_media:sm-60035",
+      "source": "social_media",
+      "created_at": "2025-10-07T04:45:54Z",
+      "text": "Would try baby products but price uncertainty and quality fear hold me back. [sm#35]",
+      "themes": [
+        {
+          "theme_id": "barrier.trust_risk",
+          "family_id": "barrier",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions quality fear as a concern"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "family_id": "barrier",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions price uncertainty as a concern"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "reddit:t30026",
+      "source": "reddit",
+      "created_at": "2026-01-16T22:56:18Z",
+      "text": "Category expansion discussion 26 Festival sale made me buy gift hampers outside my usual categories. [reddit#78]",
+      "themes": [
+        {
+          "theme_id": "experiment.gift_occasion",
+          "family_id": "experiment",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions festival sale and gift hampers"
+        },
+        {
+          "theme_id": "experiment.deal_driven",
+          "family_id": "experiment",
+          "score": 0.9,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "llm_rationale": "Mentions sale as a motivator",
+          "assignment_source": "groq_llm"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "family_id": "habit",
+          "score": 0.65,
+          "keyword_hits": [
+            "usual"
+          ],
+          "similarity": 0.0399,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "barrier.unknown_value",
+          "family_id": "barrier",
+          "score": 0.057,
+          "keyword_hits": [],
+          "similarity": 0.1267,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "habitual_reorderer",
+        "occasional_explorer"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70082",
+      "source": "community_forums",
+      "created_at": "2026-01-26T10:03:33Z",
+      "text": "Cross-category cues are weak; app never nudges adjacent aisles. [cf#82]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_cross_category_cues",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions weak cross-category cues"
+        },
+        {
+          "theme_id": "frustration.weak_support",
+          "family_id": "frustration",
+          "score": 0.0771,
+          "keyword_hits": [],
+          "similarity": 0.1714,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.no_starter_kits",
+          "family_id": "unmet",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "reddit:c40121",
+      "source": "reddit",
+      "created_at": "2026-04-28T17:56:42Z",
+      "text": "Recommendations never show adjacent categories - always snacks again. [reddit#121]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_cross_category_cues",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions recommendations do not show adjacent categories"
+        },
+        {
+          "theme_id": "discovery.recommendations",
+          "family_id": "discovery",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions using recommendations, but with issues"
+        },
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.0733,
+          "keyword_hits": [],
+          "similarity": 0.1629,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 0.0722,
+          "keyword_hits": [],
+          "similarity": 0.1605,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer",
+        "long_tenure_tone"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50140",
+      "source": "product_reviews",
+      "created_at": "2026-06-12T17:23:38Z",
+      "text": "I reorder the same groceries every week and barely open other categories. [pr#140]",
+      "themes": [
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.9,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions reordering the same groceries every week"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.8,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Barely opens other categories"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "family_id": "habit",
+          "score": 0.65,
+          "keyword_hits": [
+            "reorder"
+          ],
+          "similarity": 0.0,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "experiment.deal_driven",
+          "family_id": "experiment",
+          "score": 0.0627,
+          "keyword_hits": [],
+          "similarity": 0.1393,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "discovery.search_led",
+          "family_id": "discovery",
+          "score": 0.0576,
+          "keyword_hits": [],
+          "similarity": 0.128,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer",
+        "occasional_explorer",
+        "long_tenure_tone"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50066",
+      "source": "product_reviews",
+      "created_at": "2025-12-19T13:34:34Z",
+      "text": "Friend told me about household essentials; word of mouth beats the app. [pr#66]",
+      "themes": [
+        {
+          "theme_id": "discovery.word_of_mouth",
+          "family_id": "discovery",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions friend recommendation"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "app_store:as-20091",
+      "source": "app_store",
+      "created_at": "2026-02-16T17:17:21Z",
+      "text": "Review 91. Would try baby products but price uncertainty and quality fear hold me back. [as#91]",
+      "themes": [
+        {
+          "theme_id": "barrier.trust_risk",
+          "family_id": "barrier",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions quality fear"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "family_id": "barrier",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions price uncertainty"
+        },
+        {
+          "theme_id": "info.reviews_depth",
+          "family_id": "info",
+          "score": 0.0878,
+          "keyword_hits": [],
+          "similarity": 0.1952,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "quick_commerce_discussions:qc-80083",
+      "source": "quick_commerce_discussions",
+      "created_at": "2026-01-28T19:02:52Z",
+      "text": "Weak guidance for first-time buyers in baby and pet. [qc#83]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions weak guidance for first-time buyers"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.0722,
+          "keyword_hits": [],
+          "similarity": 0.1605,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "social_media:sm-60150",
+      "source": "social_media",
+      "created_at": "2026-07-06T08:46:45Z",
+      "text": "Friend told me about household essentials; word of mouth beats the app. [sm#150]",
+      "themes": [
+        {
+          "theme_id": "discovery.word_of_mouth",
+          "family_id": "discovery",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions friend recommendation"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70124",
+      "source": "community_forums",
+      "created_at": "2026-05-05T20:04:38Z",
+      "text": "Need ingredients and use-case guidance before trying personal care. [cf#124]",
+      "themes": [
+        {
+          "theme_id": "info.ingredients_use_cases",
+          "family_id": "info",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Needs usage guidance before trying"
+        },
+        {
+          "theme_id": "frustration.weak_support",
+          "family_id": "frustration",
+          "score": 0.0592,
+          "keyword_hits": [],
+          "similarity": 0.1315,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "barrier.relevance_doubt",
+          "family_id": "barrier",
+          "score": 0.0563,
+          "keyword_hits": [],
+          "similarity": 0.1251,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "reddit:c40080",
+      "source": "reddit",
+      "created_at": "2026-01-21T16:54:56Z",
+      "text": "No starter kits for new categories. Hard to know what to buy first. [reddit#80]",
+      "themes": [
+        {
+          "theme_id": "unmet.no_starter_kits",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions wanting starter kits for new categories"
+        },
+        {
+          "theme_id": "frustration.opaque_fees",
+          "family_id": "frustration",
+          "score": 0.0901,
+          "keyword_hits": [],
+          "similarity": 0.2001,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70125",
+      "source": "community_forums",
+      "created_at": "2026-05-08T05:03:57Z",
+      "text": "Want clearer returns and freshness info before a new category trial. [cf#125]",
+      "themes": [
+        {
+          "theme_id": "info.sizing_freshness",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Needs freshness cues"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Needs clarity on returns"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "family_id": "habit",
+          "score": 0.0676,
+          "keyword_hits": [],
+          "similarity": 0.1502,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "habitual_reorderer"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10055",
+      "source": "play_store",
+      "created_at": "2025-11-23T12:22:08Z",
+      "text": "Weak guidance for first-time buyers in baby and pet. [ps#55]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions weak guidance for first-time buyers"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.0722,
+          "keyword_hits": [],
+          "similarity": 0.1605,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50115",
+      "source": "product_reviews",
+      "created_at": "2026-04-14T12:50:50Z",
+      "text": "Once items are in my list I stop exploring. Habit locks me in. [pr#115]",
+      "themes": [
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.8,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "llm_rationale": "Habit locks into same items",
+          "assignment_source": "groq_llm"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.7,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Stop exploring once items are in list"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer"
+      ]
+    },
+    {
+      "feedback_id": "social_media:sm-60104",
+      "source": "social_media",
+      "created_at": "2026-03-19T12:28:24Z",
+      "text": "Tried personal care only because of a big discount. Deals drive my trials. [sm#104]",
+      "themes": [
+        {
+          "theme_id": "experiment.deal_driven",
+          "family_id": "experiment",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions trying a new category because of a discount"
+        },
+        {
+          "theme_id": "frustration.weak_support",
+          "family_id": "frustration",
+          "score": 0.0687,
+          "keyword_hits": [],
+          "similarity": 0.1526,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "positive",
+      "segments": [
+        "occasional_explorer",
+        "deal_sensitive"
+      ]
+    },
+    {
+      "feedback_id": "quick_commerce_discussions:qc-80028",
+      "source": "quick_commerce_discussions",
+      "created_at": "2025-09-20T14:40:43Z",
+      "text": "Q-commerce thread 28 I reorder the same groceries every week and barely open other categories. [qc#28]",
+      "themes": [
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions reordering the same groceries every week and rarely opening other categories"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.8,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Barely opens other categories"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "family_id": "habit",
+          "score": 0.65,
+          "keyword_hits": [
+            "reorder"
+          ],
+          "similarity": 0.0,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "family_id": "barrier",
+          "score": 0.0546,
+          "keyword_hits": [],
+          "similarity": 0.1214,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer",
+        "long_tenure_tone"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10052",
+      "source": "play_store",
+      "created_at": "2025-11-16T10:14:12Z",
+      "text": "No starter kits for new categories. Hard to know what to buy first. [ps#52]",
+      "themes": [
+        {
+          "theme_id": "unmet.no_starter_kits",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions wanting starter kits for new categories"
+        },
+        {
+          "theme_id": "frustration.opaque_fees",
+          "family_id": "frustration",
+          "score": 0.0901,
+          "keyword_hits": [],
+          "similarity": 0.2001,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "quick_commerce_discussions:qc-80065",
+      "source": "quick_commerce_discussions",
+      "created_at": "2025-12-17T04:35:15Z",
+      "text": "Recommendations never show adjacent categories - always snacks again. [qc#65]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_cross_category_cues",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions recommendations do not show adjacent categories"
+        },
+        {
+          "theme_id": "discovery.recommendations",
+          "family_id": "discovery",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions using recommendations, but with issues"
+        },
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 0.0756,
+          "keyword_hits": [],
+          "similarity": 0.168,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.0639,
+          "keyword_hits": [],
+          "similarity": 0.142,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "frustration.stockouts",
+          "family_id": "frustration",
+          "score": 0.0592,
+          "keyword_hits": [],
+          "similarity": 0.1316,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer",
+        "long_tenure_tone"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10117",
+      "source": "play_store",
+      "created_at": "2026-04-19T06:49:28Z",
+      "text": "Opaque fees make me avoid trying new categories at checkout. [ps#117]",
+      "themes": [
+        {
+          "theme_id": "frustration.opaque_fees",
+          "family_id": "frustration",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions opaque fees as a reason to avoid trying new categories"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "family_id": "barrier",
+          "score": 0.65,
+          "keyword_hits": [
+            "opaque fees"
+          ],
+          "similarity": 0.0784,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.0855,
+          "keyword_hits": [],
+          "similarity": 0.1899,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "frustration.stockouts",
+          "family_id": "frustration",
+          "score": 0.0592,
+          "keyword_hits": [],
+          "similarity": 0.1316,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.no_starter_kits",
+          "family_id": "unmet",
+          "score": 0.0567,
+          "keyword_hits": [],
+          "similarity": 0.126,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70005",
+      "source": "community_forums",
+      "created_at": "2025-07-28T04:06:33Z",
+      "text": "Opaque fees make me avoid trying new categories at checkout. [cf#5]",
+      "themes": [
+        {
+          "theme_id": "frustration.opaque_fees",
+          "family_id": "frustration",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions opaque fees as a reason to avoid trying new categories"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "family_id": "barrier",
+          "score": 0.65,
+          "keyword_hits": [
+            "opaque fees"
+          ],
+          "similarity": 0.1124,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "discovery.social_proof",
+          "family_id": "discovery",
+          "score": 0.0783,
+          "keyword_hits": [],
+          "similarity": 0.1739,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.0653,
+          "keyword_hits": [],
+          "similarity": 0.1452,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.no_starter_kits",
+          "family_id": "unmet",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer"
+      ]
+    },
+    {
+      "feedback_id": "app_store:as-20007",
+      "source": "app_store",
+      "created_at": "2025-08-01T22:05:10Z",
+      "text": "Review 7. Would try baby products but price uncertainty and quality fear hold me back. [as#7]",
+      "themes": [
+        {
+          "theme_id": "barrier.trust_risk",
+          "family_id": "barrier",
+          "score": 0.9,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions quality fear"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "family_id": "barrier",
+          "score": 0.9,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions price uncertainty"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70083",
+      "source": "community_forums",
+      "created_at": "2026-01-28T19:02:52Z",
+      "text": "Weak guidance for first-time buyers in baby and pet. [cf#83]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions weak guidance for first-time buyers"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.0722,
+          "keyword_hits": [],
+          "similarity": 0.1605,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10149",
+      "source": "play_store",
+      "created_at": "2026-07-04T00:37:26Z",
+      "text": "Recommendations never show adjacent categories - always snacks again. [ps#149]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_cross_category_cues",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions recommendations do not show adjacent categories"
+        },
+        {
+          "theme_id": "discovery.recommendations",
+          "family_id": "discovery",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions using recommendations, but with issues"
+        },
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.1023,
+          "keyword_hits": [],
+          "similarity": 0.2273,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 0.0756,
+          "keyword_hits": [],
+          "similarity": 0.168,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "habitual_reorderer",
+        "long_tenure_tone"
+      ]
+    },
+    {
+      "feedback_id": "social_media:sm-60071",
+      "source": "social_media",
+      "created_at": "2025-12-31T09:41:07Z",
+      "text": "Sizing and pack freshness cues are missing on unfamiliar SKUs. [sm#71]",
+      "themes": [
+        {
+          "theme_id": "info.sizing_freshness",
+          "family_id": "info",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions missing sizing and pack freshness cues"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "reddit:c40118",
+      "source": "reddit",
+      "created_at": "2026-04-21T15:48:46Z",
+      "text": "Personal care feels irrelevant to me; relevance doubt is real. [reddit#118]",
+      "themes": [
+        {
+          "theme_id": "barrier.relevance_doubt",
+          "family_id": "barrier",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Expresses personal care feels irrelevant"
+        },
+        {
+          "theme_id": "frustration.poor_substitutes",
+          "family_id": "frustration",
+          "score": 0.0819,
+          "keyword_hits": [],
+          "similarity": 0.182,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "info.reviews_depth",
+          "family_id": "info",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "app_store:as-20114",
+      "source": "app_store",
+      "created_at": "2026-04-12T03:51:31Z",
+      "text": "Review 114. Same basket every Sunday - milk, eggs, snacks. Routine never changes. [as#114]",
+      "themes": [
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions same basket every Sunday"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "habitual_reorderer"
+      ]
+    },
+    {
+      "feedback_id": "app_store:as-20003",
+      "source": "app_store",
+      "created_at": "2025-07-23T10:57:56Z",
+      "text": "Review 3. Once items are in my list I stop exploring. Habit locks me in. [as#3]",
+      "themes": [
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.9,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions stopping exploration once items are in list"
+        },
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.8,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "llm_rationale": "Implies habit of buying the same items",
+          "assignment_source": "groq_llm"
+        },
+        {
+          "theme_id": "info.reviews_depth",
+          "family_id": "info",
+          "score": 0.0586,
+          "keyword_hits": [],
+          "similarity": 0.1301,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "positive",
+      "segments": [
+        "habitual_reorderer"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10123",
+      "source": "play_store",
+      "created_at": "2026-05-03T11:05:20Z",
+      "text": "Social proof from deep reviews mattered more than any in-app cue. [ps#123]",
+      "themes": [
+        {
+          "theme_id": "discovery.social_proof",
+          "family_id": "discovery",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions social proof from reviews"
+        },
+        {
+          "theme_id": "info.reviews_depth",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [
+            "deep reviews"
+          ],
+          "similarity": 0.1155,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "positive",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50123",
+      "source": "product_reviews",
+      "created_at": "2026-05-03T11:05:20Z",
+      "text": "Social proof from deep reviews mattered more than any in-app cue. [pr#123]",
+      "themes": [
+        {
+          "theme_id": "discovery.social_proof",
+          "family_id": "discovery",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions social proof from reviews"
+        },
+        {
+          "theme_id": "info.reviews_depth",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [
+            "deep reviews"
+          ],
+          "similarity": 0.2222,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "positive",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10111",
+      "source": "play_store",
+      "created_at": "2026-04-05T01:43:35Z",
+      "text": "Weak guidance for first-time buyers in baby and pet. [ps#111]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions weak guidance for first-time buyers"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.0722,
+          "keyword_hits": [],
+          "similarity": 0.1605,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "reddit:t30048",
+      "source": "reddit",
+      "created_at": "2026-06-22T04:30:52Z",
+      "text": "Category expansion discussion 48 Trust risk stops me from pet supplies - unsure about freshness and authenticity. [reddit#144]",
+      "themes": [
+        {
+          "theme_id": "barrier.trust_risk",
+          "family_id": "barrier",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions trust risk, freshness, and authenticity concerns"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70049",
+      "source": "community_forums",
+      "created_at": "2025-11-09T08:06:16Z",
+      "text": "After we got a puppy I finally opened pet supplies - life event trigger. [cf#49]",
+      "themes": [
+        {
+          "theme_id": "experiment.life_event",
+          "family_id": "experiment",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Life event (getting a puppy) triggered exploration of a new category"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "occasional_explorer",
+        "life_stage_pet_or_parent"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50150",
+      "source": "product_reviews",
+      "created_at": "2026-07-06T08:46:45Z",
+      "text": "Friend told me about household essentials; word of mouth beats the app. [pr#150]",
+      "themes": [
+        {
+          "theme_id": "discovery.word_of_mouth",
+          "family_id": "discovery",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions friend recommendation"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "reddit:t30015",
+      "source": "reddit",
+      "created_at": "2025-10-30T20:59:01Z",
+      "text": "Category expansion discussion 15 Late delivery twice - not experimenting when ETA slips. [reddit#45]",
+      "themes": [
+        {
+          "theme_id": "frustration.late_delivery",
+          "family_id": "frustration",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Explicitly mentions late delivery as a reason for not experimenting"
+        },
+        {
+          "theme_id": "discovery.search_led",
+          "family_id": "discovery",
+          "score": 0.0665,
+          "keyword_hits": [],
+          "similarity": 0.1478,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "barrier.relevance_doubt",
+          "family_id": "barrier",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "experiment.niche_interest",
+          "family_id": "experiment",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "occasional_explorer"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70069",
+      "source": "community_forums",
+      "created_at": "2025-12-26T15:42:30Z",
+      "text": "Forum topic 23 Want clearer returns and freshness info before a new category trial. [cf#69]",
+      "themes": [
+        {
+          "theme_id": "info.sizing_freshness",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions wanting freshness info"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions wanting clearer returns info"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "play_store:ps-10101",
+      "source": "play_store",
+      "created_at": "2026-03-12T09:30:28Z",
+      "text": "Late delivery twice - not experimenting when ETA slips. [ps#101]",
+      "themes": [
+        {
+          "theme_id": "frustration.late_delivery",
+          "family_id": "frustration",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions late delivery twice"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "family_id": "habit",
+          "score": 0.6,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "llm_rationale": "Implies reluctance to experiment due to late delivery",
+          "assignment_source": "groq_llm"
+        },
+        {
+          "theme_id": "discovery.search_led",
+          "family_id": "discovery",
+          "score": 0.1057,
+          "keyword_hits": [],
+          "similarity": 0.235,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "experiment.niche_interest",
+          "family_id": "experiment",
+          "score": 0.0646,
+          "keyword_hits": [],
+          "similarity": 0.1435,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "frustration.opaque_fees",
+          "family_id": "frustration",
+          "score": 0.0556,
+          "keyword_hits": [],
+          "similarity": 0.1236,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer",
+        "occasional_explorer"
+      ]
+    },
+    {
+      "feedback_id": "social_media:sm-60070",
+      "source": "social_media",
+      "created_at": "2025-12-29T00:41:49Z",
+      "text": "Review depth is too thin for categories I have never bought. [sm#70]",
+      "themes": [
+        {
+          "theme_id": "info.reviews_depth",
+          "family_id": "info",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Wants more/better reviews before trial"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50149",
+      "source": "product_reviews",
+      "created_at": "2026-07-04T00:37:26Z",
+      "text": "Recommendations never show adjacent categories - always snacks again. [pr#149]",
+      "themes": [
+        {
+          "theme_id": "unmet.weak_cross_category_cues",
+          "family_id": "unmet",
+          "score": 1.0,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions recommendations do not show adjacent categories"
+        },
+        {
+          "theme_id": "discovery.recommendations",
+          "family_id": "discovery",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions using recommendations, but with issues"
+        },
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.1023,
+          "keyword_hits": [],
+          "similarity": 0.2273,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "unmet.weak_guidance",
+          "family_id": "unmet",
+          "score": 0.0756,
+          "keyword_hits": [],
+          "similarity": 0.168,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "habitual_reorderer",
+        "long_tenure_tone"
+      ]
+    },
+    {
+      "feedback_id": "product_reviews:pr-50097",
+      "source": "product_reviews",
+      "created_at": "2026-03-02T22:23:14Z",
+      "text": "Want clearer returns and freshness info before a new category trial. [pr#97]",
+      "themes": [
+        {
+          "theme_id": "info.sizing_freshness",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Needs freshness cues"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.65,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Needs clarity on returns"
+        }
+      ],
+      "sentiment_label": "neutral",
+      "segments": [
+        "unspecified"
+      ]
+    },
+    {
+      "feedback_id": "community_forums:cf-70140",
+      "source": "community_forums",
+      "created_at": "2026-06-12T17:23:38Z",
+      "text": "I reorder the same groceries every week and barely open other categories. [cf#140]",
+      "themes": [
+        {
+          "theme_id": "habit.same_basket",
+          "family_id": "habit",
+          "score": 0.9,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Mentions reordering the same groceries every week"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "family_id": "habit",
+          "score": 0.8,
+          "keyword_hits": [],
+          "similarity": 0.0,
+          "assignment_source": "groq_llm+keyword",
+          "llm_rationale": "Barely opens other categories"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "family_id": "habit",
+          "score": 0.65,
+          "keyword_hits": [
+            "reorder"
+          ],
+          "similarity": 0.0,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "discovery.search_led",
+          "family_id": "discovery",
+          "score": 0.0601,
+          "keyword_hits": [],
+          "similarity": 0.1335,
+          "assignment_source": "keyword_similarity"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "family_id": "info",
+          "score": 0.0542,
+          "keyword_hits": [],
+          "similarity": 0.1204,
+          "assignment_source": "keyword_similarity"
+        }
+      ],
+      "sentiment_label": "negative",
+      "segments": [
+        "habitual_reorderer",
+        "long_tenure_tone"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+# Blinkit App Review — Phase 0 configuration example
+# Copy to settings.yaml and adjust. Do not commit secrets.
+
+project:
+  name: blinkit-app-review
+  phase: 0
+
+batch:
+  cadence: weekly
+  timezone: Asia/Kolkata
+
+languages:
+  primary: en
+  analyze_only_primary: true
+
+sources:
+  priority:
+    - play_store
+    - app_store
+    - reddit
+    - product_reviews
+    - social_media
+    - community_forums
+    - quick_commerce_discussions
+
+storage:
+  raw_dir: data/raw
+  cleaned_dir: data/cleaned
+  themes_dir: data/themes
+  insights_dir: data/insights
+  vector_dir: data/vectors
+
+models:
+  # Implementations are behind thin interfaces — swap providers without schema changes
+  embedding:
+    provider: openai_compatible
+    model: text-embedding-3-small
+  llm:
+    provider: openai_compatible
+    model: gpt-4.1-mini
+  vector_index:
+    provider: chroma
+    collection: feedback_embeddings
+
+schema:
+  canonical_version: "1.0.0"
+  schema_path: ../schema/canonical_feedback_schema.json
+
+taxonomy:
+  version: v0
+  path: ../taxonomy/theme_taxonomy_v0.json
+
+validation:
+  theme_sample_size: 100
+  publish_min_confidence: 0.6
+  require_evidence: true
+
+dashboard:
+  platform: streamlit
+  show_draft_insights: false

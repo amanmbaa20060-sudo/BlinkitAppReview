@@ -1,0 +1,17 @@
+.env
+config/settings.yaml
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+data/prepared/**
+data/embeddings/**
+data/enriched/**
+data/themes/**
+!data/**/.gitkeep
+reports/**
+!reports/.gitkeep
+
+.DS_Store
+Thumbs.db

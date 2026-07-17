@@ -1,0 +1,234 @@
+{
+  "taxonomy_version": "v0",
+  "status": "draft_seed",
+  "frozen_for_phase": "phase_2_input",
+  "created_at": "2026-07-16",
+  "families": [
+    {
+      "family_id": "habit",
+      "name": "Habit & repetition",
+      "themes": [
+        {
+          "theme_id": "habit.same_basket",
+          "name": "Same-basket loyalty",
+          "inclusion": "Mentions always buying the same items/categories",
+          "exclusion": "One-off purchase complaints unrelated to repetition"
+        },
+        {
+          "theme_id": "habit.autopilot_reorder",
+          "name": "Autopilot reordering",
+          "inclusion": "Reorder, repeat order, usual, saved lists as default behavior",
+          "exclusion": "Deliberate browsing / exploration"
+        },
+        {
+          "theme_id": "habit.low_browse_intent",
+          "name": "Low browse intent",
+          "inclusion": "Rarely opens categories beyond search/reorder",
+          "exclusion": "Active category exploration"
+        }
+      ]
+    },
+    {
+      "family_id": "barrier",
+      "name": "Exploration barriers",
+      "themes": [
+        {
+          "theme_id": "barrier.unknown_value",
+          "name": "Unknown category value",
+          "inclusion": "Unsure why to try a new category",
+          "exclusion": "Price-only objections without value uncertainty"
+        },
+        {
+          "theme_id": "barrier.trust_risk",
+          "name": "Trust / quality risk",
+          "inclusion": "Fear of bad quality, freshness, authenticity in unfamiliar categories",
+          "exclusion": "General delivery delay complaints"
+        },
+        {
+          "theme_id": "barrier.price_uncertainty",
+          "name": "Price uncertainty",
+          "inclusion": "Unclear fees, surge, too expensive to try",
+          "exclusion": "Praise of deals"
+        },
+        {
+          "theme_id": "barrier.relevance_doubt",
+          "name": "Relevance doubt",
+          "inclusion": "Not for me; category feels irrelevant",
+          "exclusion": "Explicit niche interest in that category"
+        }
+      ]
+    },
+    {
+      "family_id": "discovery",
+      "name": "Discovery mechanisms",
+      "themes": [
+        {
+          "theme_id": "discovery.search_led",
+          "name": "Search-led discovery",
+          "inclusion": "Finds products mainly via search",
+          "exclusion": "Recommendation/banner led"
+        },
+        {
+          "theme_id": "discovery.homepage_banners",
+          "name": "Homepage / banners",
+          "inclusion": "Discovers via home, banners, campaigns",
+          "exclusion": "Search-only journeys"
+        },
+        {
+          "theme_id": "discovery.recommendations",
+          "name": "Recommendations",
+          "inclusion": "Personalized or suggested-for-you discovery",
+          "exclusion": "Pure social word-of-mouth"
+        },
+        {
+          "theme_id": "discovery.social_proof",
+          "name": "Social proof",
+          "inclusion": "Ratings, reviews, influencer/friend mentions drive trial",
+          "exclusion": "Internal app search alone"
+        },
+        {
+          "theme_id": "discovery.word_of_mouth",
+          "name": "Word of mouth",
+          "inclusion": "Offline/online peer recommendation",
+          "exclusion": "Paid ads as sole mention"
+        }
+      ]
+    },
+    {
+      "family_id": "info",
+      "name": "Information needs",
+      "themes": [
+        {
+          "theme_id": "info.ingredients_use_cases",
+          "name": "Ingredients / use-cases",
+          "inclusion": "Needs usage guidance before trying",
+          "exclusion": "Post-purchase taste preference only"
+        },
+        {
+          "theme_id": "info.sizing_freshness",
+          "name": "Sizing / freshness",
+          "inclusion": "Needs size, weight, expiry, freshness cues",
+          "exclusion": "Packaging aesthetics only"
+        },
+        {
+          "theme_id": "info.return_policy",
+          "name": "Return / refund policy",
+          "inclusion": "Needs clarity on returns before trying new category",
+          "exclusion": "Completed refund logistics after order"
+        },
+        {
+          "theme_id": "info.reviews_depth",
+          "name": "Review depth",
+          "inclusion": "Wants more/better reviews before trial",
+          "exclusion": "Star rating UI bugs"
+        }
+      ]
+    },
+    {
+      "family_id": "frustration",
+      "name": "Frustration patterns",
+      "themes": [
+        {
+          "theme_id": "frustration.stockouts",
+          "name": "Stockouts",
+          "inclusion": "Items unavailable / frequently OOS",
+          "exclusion": "Successful fulfillments"
+        },
+        {
+          "theme_id": "frustration.late_delivery",
+          "name": "Late delivery",
+          "inclusion": "Missed ETA / slow delivery",
+          "exclusion": "Praise of speed"
+        },
+        {
+          "theme_id": "frustration.poor_substitutes",
+          "name": "Poor substitutes",
+          "inclusion": "Bad replacements",
+          "exclusion": "Acceptable substitutes"
+        },
+        {
+          "theme_id": "frustration.opaque_fees",
+          "name": "Opaque fees",
+          "inclusion": "Surprise charges, unclear delivery/surge fees",
+          "exclusion": "Clear fee explanations"
+        },
+        {
+          "theme_id": "frustration.weak_support",
+          "name": "Weak support",
+          "inclusion": "Hard to reach support / unresolved issues",
+          "exclusion": "Positive support experiences"
+        }
+      ]
+    },
+    {
+      "family_id": "experiment",
+      "name": "Experiment propensity",
+      "themes": [
+        {
+          "theme_id": "experiment.deal_driven",
+          "name": "Deal-driven trial",
+          "inclusion": "Tries new categories because of discounts/offers",
+          "exclusion": "Habitual same-basket without deals"
+        },
+        {
+          "theme_id": "experiment.life_event",
+          "name": "Life-event triggers",
+          "inclusion": "Pet, baby, move, health change drives new category",
+          "exclusion": "No life-context mentioned"
+        },
+        {
+          "theme_id": "experiment.gift_occasion",
+          "name": "Gift / occasion buying",
+          "inclusion": "Festival/gift prompts exploration",
+          "exclusion": "Routine weekly shop"
+        },
+        {
+          "theme_id": "experiment.niche_interest",
+          "name": "Niche interest",
+          "inclusion": "Specialty diet, hobby, brand fandom",
+          "exclusion": "Generic convenience shopping"
+        }
+      ]
+    },
+    {
+      "family_id": "unmet",
+      "name": "Unmet needs",
+      "themes": [
+        {
+          "theme_id": "unmet.missing_assortment",
+          "name": "Missing assortment",
+          "inclusion": "Category/product gaps",
+          "exclusion": "Temporary single SKU stockout"
+        },
+        {
+          "theme_id": "unmet.weak_guidance",
+          "name": "Weak guidance",
+          "inclusion": "No help choosing in unfamiliar categories",
+          "exclusion": "Expert users who do not need guidance"
+        },
+        {
+          "theme_id": "unmet.no_starter_kits",
+          "name": "No starter kits",
+          "inclusion": "Wants bundles/starter packs for new categories",
+          "exclusion": "Prefers a-la-carte only"
+        },
+        {
+          "theme_id": "unmet.weak_cross_category_cues",
+          "name": "Weak cross-category cues",
+          "inclusion": "App does not suggest adjacent categories",
+          "exclusion": "Users who reject recommendations"
+        }
+      ]
+    }
+  ],
+  "discovery_question_map": {
+    "Q1_same_category_repetition": ["habit"],
+    "Q2_exploration_barriers": ["barrier"],
+    "Q3_discovery_today": ["discovery"],
+    "Q4_role_of_habits": ["habit"],
+    "Q5_information_needs": ["info"],
+    "Q6_recurring_frustrations": ["frustration"],
+    "Q7_experiment_segments": ["experiment"],
+    "Q8_unmet_needs": ["unmet"]
+  }
+}

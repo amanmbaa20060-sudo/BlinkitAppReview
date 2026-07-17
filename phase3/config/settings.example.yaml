@@ -1,0 +1,20 @@
+project:
+  name: blinkit-app-review
+  phase: 3
+
+input:
+  enriched: ../phase2/data/enriched/{run_id}/enriched_feedback.jsonl
+  metrics: ../phase2/data/themes/v1/{run_id}/metrics.json
+  taxonomy: ../phase2/taxonomy/theme_taxonomy_v1.json
+
+evidence:
+  max_quotes_per_insight: 5
+  min_theme_score: 0.55
+  prefer_multi_source: true
+
+synthesis:
+  mode: evidence_constrained_template
+  # No free-form LLM invention — headlines/implications must cite retrieved quotes
+
+insight:
+  default_status: draft

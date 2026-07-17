@@ -1,0 +1,21 @@
+# Secrets / local overrides
+.env
+config/settings.yaml
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated run artifacts (fixtures stay tracked)
+data/raw/**
+data/cleaned/**
+!data/raw/.gitkeep
+!data/cleaned/.gitkeep
+!data/fixtures/**
+
+reports/**
+!reports/.gitkeep
+
+.DS_Store
+Thumbs.db

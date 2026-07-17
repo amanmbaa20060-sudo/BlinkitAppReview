@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category Expansion Insights</title>
+    <link rel="stylesheet" href="styles.css?v=3" />
+  </head>
+  <body>
+    <div id="boot-status" class="boot-status">Loading dashboard...</div>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="sidebar-scroll">
+          <div class="brand-block">
+            <h1>Category Expansion Insights</h1>
+            <p>Why MACs stay in familiar categories and what unlocks new ones.</p>
+          </div>
+          <nav class="nav-list" id="nav-list"></nav>
+          <div class="sidebar-footer">
+            <button class="primary-button" type="button">New Analysis</button>
+            <div class="footer-links">
+              <span>Settings</span>
+              <span>Support</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="topbar-search">
+            <input id="global-search" type="search" placeholder="Search insights, themes, or evidence..." />
+          </div>
+          <div class="topbar-meta">
+            <span class="status-dot"></span>
+            <span id="run-status">Published insights</span>
+            <span class="divider"></span>
+            <span id="run-id"></span>
+            <button class="ghost-button" id="export-summary">Export summary</button>
+          </div>
+        </header>
+
+        <section class="filter-bar">
+          <label>
+            <span>Source</span>
+            <select id="filter-source"></select>
+          </label>
+          <label>
+            <span>Date range</span>
+            <select id="filter-date">
+              <option value="all">Last 12 months</option>
+              <option value="90">Last 90 days</option>
+              <option value="180">Last 180 days</option>
+            </select>
+          </label>
+          <label>
+            <span>Theme</span>
+            <select id="filter-theme"></select>
+          </label>
+          <label>
+            <span>Sentiment</span>
+            <select id="filter-sentiment"></select>
+          </label>
+          <label>
+            <span>Segment</span>
+            <select id="filter-segment"></select>
+          </label>
+          <button class="outline-button" id="clear-filters">Clear all</button>
+        </section>
+
+        <section class="view-container">
+          <div id="view-overview" class="view active"></div>
+          <div id="view-theme-explorer" class="view"></div>
+          <div id="view-discovery-qna" class="view"></div>
+          <div id="view-segment-lens" class="view"></div>
+          <div id="view-frustration-monitor" class="view"></div>
+          <div id="view-evidence-browser" class="view"></div>
+          <div id="view-methodology" class="view"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal hidden" id="evidence-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal="true"></div>
+      <div class="modal-card">
+        <button class="modal-close" id="close-modal" aria-label="Close evidence modal">×</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+
+    <script src="dashboard-data.js?v=3"></script>
+    <script src="app.js?v=3"></script>
+  </body>
+</html>

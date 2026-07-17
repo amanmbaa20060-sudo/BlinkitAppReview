@@ -1,0 +1,24 @@
+# Secrets and local env
+.env
+config/settings.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Data artifacts (keep directory structure via .gitkeep)
+project_skeleton/data/raw/**
+project_skeleton/data/cleaned/**
+project_skeleton/data/themes/**
+project_skeleton/data/insights/**
+project_skeleton/data/vectors/**
+!project_skeleton/data/**/.gitkeep
+!project_skeleton/data/**/.gitignore
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

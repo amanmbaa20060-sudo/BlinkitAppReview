@@ -1,0 +1,31 @@
+project:
+  name: blinkit-app-review
+  phase: 2
+
+input:
+  phase1_cleaned: ../phase1/data/cleaned/{run_id}/feedback.jsonl
+  taxonomy_v0: ../phase0/taxonomy/theme_taxonomy_v0.json
+
+languages:
+  primary: en
+  analyze_only_primary: true
+
+embeddings:
+  provider: local_hashing
+  dimensions: 256
+  # OpenAI-compatible path available later via EMBEDDING_API_KEY
+
+themeing:
+  min_keyword_hits: 1
+  min_similarity: 0.12
+  min_cluster_support: 8
+  other_theme_id: theme.other
+
+sentiment:
+  method: lexicon
+
+segments:
+  method: rule_based_text_cues
+
+output:
+  taxonomy_version: v1

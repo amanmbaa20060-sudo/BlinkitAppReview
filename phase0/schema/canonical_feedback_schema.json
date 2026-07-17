@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://blinkit-app-review.local/schemas/canonical_feedback_schema.json",
+  "title": "CanonicalFeedback",
+  "description": "Frozen canonical feedback schema for Phase 1 ingestion (v1.0.0).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "feedback_id",
+    "source",
+    "created_at",
+    "text",
+    "ingested_at",
+    "raw_payload"
+  ],
+  "properties": {
+    "feedback_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable unique ID."
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "play_store",
+        "app_store",
+        "reddit",
+        "product_reviews",
+        "social_media",
+        "community_forums",
+        "quick_commerce_discussions"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Original publish/post time (ISO-8601)."
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Normalized body text."
+    },
+    "rating": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 5
+    },
+    "language": {
+      "type": ["string", "null"],
+      "description": "Detected language code (e.g. en)."
+    },
+    "url_or_ref": {
+      "type": ["string", "null"]
+    },
+    "author_handle": {
+      "type": ["string", "null"]
+    },
+    "engagement": {
+      "type": ["object", "null"],
+      "additionalProperties": true
+    },
+    "thread_id": {
+      "type": ["string", "null"]
+    },
+    "parent_id": {
+      "type": ["string", "null"]
+    },
+    "run_id": {
+      "type": ["string", "null"]
+    },
+    "ingested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "is_quarantined": {
+      "type": "boolean",
+      "default": false
+    },
+    "quarantine_reason": {
+      "type": ["string", "null"]
+    },
+    "raw_payload": {
+      "type": "object",
+      "description": "Original source payload for auditability."
+    }
+  }
+}

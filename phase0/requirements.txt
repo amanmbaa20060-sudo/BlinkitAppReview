@@ -1,0 +1,4 @@
+# Phase 0 — minimal deps for smoke test / local tooling.
+# Phase 1+ will add ingestion, NLP, and dashboard packages.
+
+PyYAML>=6.0

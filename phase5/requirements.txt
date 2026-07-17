@@ -1,0 +1,2 @@
+# Phase 5 uses the Python standard library only for serving.
+# No third-party packages required for the static dashboard.
