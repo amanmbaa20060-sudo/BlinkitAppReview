@@ -11,6 +11,20 @@ PHASE5 = ROOT / "phase5"
 RUN_ID = "2026-07-16-weekly"
 
 
+def pipeline_input_paths() -> list[Path]:
+    return [
+        ROOT / "phase2" / "data" / "themes" / "v1" / RUN_ID / "metrics.json",
+        ROOT / "phase2" / "data" / "enriched" / RUN_ID / "enriched_feedback.jsonl",
+        ROOT / "phase4" / "data" / "insights" / RUN_ID / "insights_published.jsonl",
+        ROOT / "phase4" / "reports" / RUN_ID / "validation_report.json",
+        ROOT / "phase4" / "reports" / RUN_ID / "drift_baseline.json",
+    ]
+
+
+def pipeline_inputs_available() -> bool:
+    return all(path.exists() for path in pipeline_input_paths())
+
+
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -275,8 +289,21 @@ def build_payload() -> dict[str, Any]:
 
 
 def main() -> None:
-    payload = build_payload()
     out = PHASE5 / "dashboard-data.js"
+    if not pipeline_inputs_available():
+        if out.exists():
+            print(
+                f"Pipeline outputs for run_id={RUN_ID} are not present; "
+                f"keeping committed {out.relative_to(ROOT)}"
+            )
+            return
+        missing = [path.relative_to(ROOT) for path in pipeline_input_paths() if not path.exists()]
+        raise SystemExit(
+            "Cannot build dashboard data: pipeline outputs are missing and "
+            f"dashboard-data.js does not exist. Missing: {', '.join(str(p) for p in missing)}"
+        )
+
+    payload = build_payload()
     out.write_text(
         "window.DASHBOARD_DATA = " + json.dumps(payload, ensure_ascii=False, indent=2) + ";\n",
         encoding="utf-8",

@@ -1,4 +1,3 @@
 # Phase 2 — hashing embeddings + Groq LLM theme classification
-openai>=1.40.0
 python-dotenv>=1.0.0
 

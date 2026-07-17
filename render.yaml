@@ -1,0 +1,33 @@
+# Render Blueprint for BlinkitAppReview
+# Sync this file from the Render Dashboard or connect the repo as a Blueprint.
+
+services:
+  # Interim dashboard host until the frontend moves to Vercel.
+  - type: web
+    name: blinkit-dashboard
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python phase5/scripts/build_dashboard_data.py
+    startCommand: python phase5/scripts/serve_render.py
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: RUN_ID
+        value: 2026-07-16-weekly
+
+  # Weekly pipeline: ingest -> theme -> insights -> validate -> dashboard bundle.
+  - type: cron
+    name: blinkit-pipeline
+    runtime: python
+    plan: free
+    schedule: "0 6 * * 1"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python scripts/run_pipeline.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: RUN_ID
+        value: 2026-07-16-weekly
+      - key: GROQ_API_KEY
+        sync: false
