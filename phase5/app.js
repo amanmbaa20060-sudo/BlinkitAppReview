@@ -1152,12 +1152,13 @@ function bindGlobalEvents() {
 
 function init() {
   try {
+    // Fire LLM status check first so it always appears in Network.
+    void loadLlmStatus();
     buildNav();
     syncControls();
     renderAllViews();
     updateActiveView();
     bindGlobalEvents();
-    void loadLlmStatus();
     const boot = document.getElementById("boot-status");
     if (boot) boot.classList.add("hidden");
   } catch (error) {
@@ -1216,7 +1217,7 @@ async function loadLlmStatus() {
 
   try {
     // Always visible in DevTools → Network (static provenance from pipeline).
-    artifactStatus = await fetchJson(`llm-status.json?t=${Date.now()}`);
+    artifactStatus = await fetchJson(`/llm-status.json?v=5&t=${Date.now()}`);
     notes.push(artifactStatus.summary || "Loaded llm-status.json");
   } catch (error) {
     notes.push(`llm-status.json failed: ${error.message || error}`);

@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Category Expansion Insights</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="preload" href="/llm-status.json" as="fetch" crossorigin />
   </head>
   <body>
     <div id="boot-status" class="boot-status">Loading dashboard...</div>
@@ -90,8 +91,43 @@
       </div>
     </div>
 
-    <script src="config.js?v=4"></script>
-    <script src="dashboard-data.js?v=4"></script>
-    <script src="app.js?v=4"></script>
+    <script src="config.js?v=5"></script>
+    <script>
+      // Guaranteed Network-tab request (runs before app.js).
+      (function probeLlmStatus() {
+        var url = "/llm-status.json?v=5&t=" + Date.now();
+        fetch(url, { cache: "no-store" })
+          .then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+          })
+          .then(function (payload) {
+            window.__LLM_STATUS_EARLY__ = payload;
+            console.info("[LLM status]", payload.summary || payload);
+            var badge = document.getElementById("llm-status-badge");
+            if (!badge) return;
+            badge.classList.remove("llm-badge-pending", "llm-badge-on", "llm-badge-off", "llm-badge-warn");
+            if (payload.llm_used_in_pipeline) {
+              badge.classList.add("llm-badge-on");
+              badge.textContent = "LLM: Groq active";
+            } else {
+              badge.classList.add("llm-badge-off");
+              badge.textContent = "LLM: not used";
+            }
+            badge.title = payload.summary || "";
+          })
+          .catch(function (err) {
+            console.warn("[LLM status] failed to load", url, err);
+            var badge = document.getElementById("llm-status-badge");
+            if (!badge) return;
+            badge.classList.remove("llm-badge-pending");
+            badge.classList.add("llm-badge-warn");
+            badge.textContent = "LLM: status missing";
+            badge.title = String(err && err.message ? err.message : err);
+          });
+      })();
+    </script>
+    <script src="dashboard-data.js?v=5"></script>
+    <script src="app.js?v=5"></script>
   </body>
 </html>
