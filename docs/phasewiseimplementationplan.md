@@ -29,6 +29,42 @@ An AI-powered discovery engine that:
 | Question-driven | Analysis work is complete only when all eight discovery questions have publishable answers |
 | Docs as you build | Model documentation is written alongside each phase, not after the fact |
 | No scope drift | Analysis intent stays as defined in the problem statement |
+| Deploy split | **Vercel** hosts the dashboard frontend; **Render** hosts backend APIs and batch/cron workloads |
+
+---
+
+## 2.1 Deployment & hosting stack
+
+Production hosting is split by responsibility:
+
+| Layer | Platform | Responsibility |
+|-------|----------|----------------|
+| **Frontend** | [Vercel](https://vercel.com) | Insight dashboard UI (Phase 5 views), static assets, client-side filters, evidence modals, export |
+| **Backend** | [Render](https://render.com) | Read-only APIs (Theme Store, Insight Store), pipeline orchestration, scheduled ingest/analysis runs, secrets (e.g. `GROQ_API_KEY`) |
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│  Vercel (Frontend)                                          │
+│  Dashboard SPA / static app  →  calls Render API            │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ HTTPS (read-only JSON)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Render (Backend)                                           │
+│  Web Service: /api/themes, /api/insights, /api/evidence     │
+│  Cron Job / Worker: Phase 1–4 batch pipelines (weekly)      │
+│  Optional: Render Postgres or object storage for run artifacts│
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Environment variables**
+
+| Location | Examples |
+|----------|----------|
+| Render (backend) | `GROQ_API_KEY`, `GROQ_MODEL`, `RUN_ID`, database/storage URLs |
+| Vercel (frontend) | `VITE_API_BASE_URL` or `NEXT_PUBLIC_API_BASE_URL` pointing to Render web service |
+
+**v1 note:** Phase 5 ships a static dashboard locally (`phase5/`); production hardening replaces the local file bundle with a Vercel-deployed frontend wired to Render read APIs.
 
 ---
 
@@ -41,7 +77,7 @@ An AI-powered discovery engine that:
 | 2 | Representation & themeing | Theme Store + sentiment/segments | Phase 1 |
 | 3 | Discovery insights | Draft insights for all 8 questions | Phase 2 |
 | 4 | Validation & governance | Publishable insight set | Phase 3 |
-| 5 | Dashboard & model docs | Stakeholder-ready deliverable | Phase 4 |
+| 5 | Dashboard & model docs | Stakeholder-ready deliverable on **Vercel** + **Render** | Phase 4 |
 
 ```text
 Phase 0 ──► Phase 1 ──► Phase 2 ──► Phase 3 ──► Phase 4 ──► Phase 5
@@ -59,7 +95,7 @@ Lock implementation choices and project structure so later phases do not rework 
 
 ### Scope
 
-- Confirm open decisions from architecture (providers, cadence, languages, QA depth, dashboard platform)
+- Confirm open decisions from architecture (providers, cadence, languages, QA depth, dashboard platform, **deployment: Vercel + Render**)
 - Define canonical feedback schema in code/docs
 - Set up repository structure, environments, and secrets handling
 - Draft initial model-doc outline (sections to fill each phase)
@@ -70,7 +106,7 @@ Lock implementation choices and project structure so later phases do not rework 
 |----|------|---------|
 | 0.1 | Decide embedding / LLM stack | Choose providers/models for embeddings, classification, synthesis |
 | 0.2 | Decide storage stack | Raw store, cleaned DB/warehouse, vector index approach |
-| 0.3 | Decide dashboard platform | Internal web app vs BI tool |
+| 0.3 | Decide dashboard platform | **Vercel** for frontend (dashboard UI); **Render** for backend APIs and pipeline services |
 | 0.4 | Decide v1 languages | e.g., English primary; list any additional languages |
 | 0.5 | Decide batch cadence | Weekly recommended for v1 unless volume requires daily |
 | 0.6 | Finalize canonical schema | Implement fields from architecture §4.2 |
@@ -78,10 +114,12 @@ Lock implementation choices and project structure so later phases do not rework 
 | 0.8 | Create project skeleton | `data/`, `src/ingest/`, `src/analysis/`, `src/validation/`, `dashboard/`, `docs/` |
 | 0.9 | Seed theme taxonomy draft | Habit, barriers, discovery, information needs, frustrations, experiment propensity, unmet needs |
 | 0.10 | Start model documentation skeleton | Sections: gather/analyze, themes, insights, validation |
+| 0.11 | Define Render backend layout | Web service (read APIs), cron/worker (batch pipelines), env groups for secrets |
+| 0.12 | Define Vercel frontend layout | Dashboard app root, build command, `API_BASE_URL` → Render backend |
 
 ### Deliverables
 
-- Decision log (providers, cadence, languages, dashboard, QA depth)
+- Decision log (providers, cadence, languages, dashboard, QA depth, **Vercel + Render deployment**)
 - Canonical schema specification
 - Repo skeleton + environment templates (no secrets committed)
 - Draft theme taxonomy v0
@@ -368,7 +406,7 @@ Ship the dashboard so all analysis and insights are visible, filterable, and bac
 
 | ID | Task | Details |
 |----|------|---------|
-| 5.1 | Wire Theme Store + Insight Store | Read-only API or direct BI dataset |
+| 5.1 | Wire Theme Store + Insight Store | Read-only **Render** API (`/api/themes`, `/api/insights`, `/api/evidence`) consumed by **Vercel** frontend |
 | 5.2 | Executive overview | Top barriers, opportunities, category-expansion narrative |
 | 5.3 | Theme explorer | Prevalence, trend, sentiment, source breakdown |
 | 5.4 | Discovery Q&A board | Headline + evidence for each question |
@@ -380,13 +418,19 @@ Ship the dashboard so all analysis and insights are visible, filterable, and bac
 | 5.10 | Methodology view | Embed or link full model documentation |
 | 5.11 | Access & privacy polish | Minimize PII on public views; respect source terms |
 | 5.12 | UAT with stakeholders | Spot-check findings; capture acceptance |
+| 5.13 | Deploy backend to Render | Web service for read APIs; env vars for Groq and run config; health check endpoint |
+| 5.14 | Deploy frontend to Vercel | Connect repo; set `API_BASE_URL` to Render service URL; preview + production domains |
+| 5.15 | Configure Render cron / worker | Scheduled weekly pipeline (Phases 1–4) or manual trigger for `run_id` refresh |
+| 5.16 | End-to-end production smoke test | Vercel UI loads published insights from Render; export and evidence click-through work against live API |
 
 ### Deliverables
 
-- Working insight dashboard with all primary views
+- Working insight dashboard with all primary views (**Vercel**)
+- Read-only backend APIs serving Theme Store + Insight Store (**Render**)
 - Filters: source, date range, theme, sentiment, segment
 - Embedded/linked model documentation
 - Stakeholder UAT notes and final acceptance
+- Production URLs documented (Vercel dashboard + Render API base)
 
 ### Exit criteria
 
@@ -394,6 +438,8 @@ Ship the dashboard so all analysis and insights are visible, filterable, and bac
 - [ ] Evidence click-through works for published insights
 - [ ] Methodology view covers gather/analyze, themes, insights, validation
 - [ ] Stakeholders can answer the eight discovery questions from the dashboard without reading the raw corpus
+- [ ] **Frontend deployed on Vercel and backend on Render with successful cross-origin API calls**
+- [ ] **Weekly (or agreed) pipeline run can execute on Render without local-only dependencies**
 
 ### Risks
 
@@ -401,6 +447,9 @@ Ship the dashboard so all analysis and insights are visible, filterable, and bac
 |------|------------|
 | Dashboard built before data is ready | Phase 5 starts only after Phase 4 publish gate |
 | Overbuilt UI | Ship required views first; defer polish |
+| **CORS / API URL misconfiguration** | Configure Render CORS for Vercel domain; document `API_BASE_URL` in both platforms |
+| **Cold starts on Render free tier** | Use health checks; consider paid instance for stakeholder demos |
+| **Secrets in frontend** | Keep `GROQ_API_KEY` on Render only; frontend calls read APIs, never LLM directly |
 
 ---
 
@@ -414,6 +463,7 @@ These run alongside phases rather than as a separate phase:
 | Pipeline versioning | `run_id`, taxonomy version, model version | Reproducibility |
 | Data ethics / ToS | Source compliance, PII minimization | Continuous |
 | Stakeholder sync | Share interim theme findings after Phase 2–3 | Avoid late surprises |
+| **Deployment (Vercel + Render)** | Frontend on Vercel; APIs + cron on Render; env groups, CORS, smoke tests | Runs from Phase 5; prep in Phase 0 |
 
 ---
 
@@ -436,6 +486,9 @@ Validation + publish gate (4)
         │
         ▼
 Dashboard + methodology (5)
+        │
+        ├── Vercel (frontend)
+        └── Render (backend API + batch jobs)
 ```
 
 **Hard blockers**
@@ -471,8 +524,9 @@ The implementation is complete when all of the following are true:
 2. Themes covering habit, barriers, discovery, information needs, frustrations, experiment propensity, and unmet needs are identified and versioned.  
 3. All eight discovery questions have dashboard answers (published insights or documented evidence gaps).  
 4. Model documentation explains gather/analyze workflow, theme identification, insight generation, and validation.  
-5. The dashboard shows analysis and insights with evidence drill-down.  
-6. Published insights passed the validation/publish gate.
+5. The dashboard shows analysis and insights with evidence drill-down (**production: Vercel frontend + Render API**).  
+6. Published insights passed the validation/publish gate.  
+7. **Dashboard and read APIs are deployed and reachable at documented Vercel and Render URLs.**
 
 ---
 
@@ -495,6 +549,9 @@ The implementation is complete when all of the following are true:
 | Insight dashboard deliverable | 5 |
 | Canonical schema + stores | 0, 1, 2, 3 |
 | Validation & publish gate | 4 |
+| **Frontend hosting (Vercel)** | 0, 5 |
+| **Backend APIs + pipeline hosting (Render)** | 0, 5 |
+| **Production env / secrets (Render)** | 0, 5 |
 
 ---
 
