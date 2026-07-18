@@ -368,12 +368,6 @@ function renderSegmentLens() {
           <tbody>${rows}</tbody>
         </table>
       </article>
-      <div class="theme-list">
-        <article class="segment-card">
-          <h3>Recommendation</h3>
-          <p>Prioritize deal-sensitive and occasional-explorer cohorts with add-on messaging, and reinforce life-stage trust signals for baby and pet categories.</p>
-        </article>
-      </div>
     </section>
   `;
 }
