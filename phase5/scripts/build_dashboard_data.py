@@ -123,6 +123,137 @@ def infer_sentiment_from_quote(quote: str) -> str:
     return "neutral"
 
 
+def normalize_evidence_quote(quote: str) -> str:
+    """Normalize quote text so near-duplicate cross-source copies collapse to one key."""
+    import re
+
+    text = str(quote or "").strip().lower()
+    text = re.sub(r"\[[a-z0-9_#:.-]+\]", " ", text)
+    text = re.sub(
+        r"^(?:review|forum topic|category expansion discussion|q-commerce thread|reddit)\s*\d+[.:]?\s*",
+        "",
+        text,
+    )
+    text = re.sub(r"\s+", " ", text).strip(" .:;-")
+    return text
+
+
+def unique_evidence_pack(evidence_pack: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Keep one example per unique quote (fixtures often mirror the same line across sources)."""
+    unique: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for row in evidence_pack or []:
+        key = normalize_evidence_quote(row.get("quote") or row.get("text") or "")
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        unique.append(row)
+    return unique
+
+
+def expand_unique_evidence_pack(
+    insight: dict[str, Any],
+    enriched: list[dict[str, Any]],
+    *,
+    limit: int = 5,
+    min_score: float = 0.55,
+) -> list[dict[str, Any]]:
+    """Build a diverse evidence pack: unique quotes first, then source variety.
+
+    Published packs often contain the same fixture line copied across sources.
+    Pull additional distinct quotes from the enriched corpus for the insight themes.
+    """
+    supporting = [t for t in (insight.get("supporting_themes") or []) if t]
+    families = sorted({t.split(".", 1)[0] for t in supporting if "." in t})
+
+    seed = unique_evidence_pack(insight.get("evidence_pack") or [])
+    selected: list[dict[str, Any]] = []
+    seen_quotes: set[str] = set()
+    seen_ids: set[str] = set()
+
+    def try_add(row: dict[str, Any]) -> bool:
+        quote = row.get("quote") or row.get("text") or ""
+        key = normalize_evidence_quote(quote)
+        fid = row.get("feedback_id")
+        if not key or key in seen_quotes:
+            return False
+        if fid and fid in seen_ids:
+            return False
+        seen_quotes.add(key)
+        if fid:
+            seen_ids.add(fid)
+        selected.append(
+            {
+                "feedback_id": fid,
+                "source": row.get("source"),
+                "created_at": row.get("created_at"),
+                "quote": quote,
+                "matched_themes": row.get("matched_themes") or supporting[:3],
+            }
+        )
+        return True
+
+    for row in seed:
+        if len(selected) >= limit:
+            break
+        try_add(row)
+
+    candidates: list[tuple[float, dict[str, Any]]] = []
+    for row in enriched:
+        if row.get("analysis_status") != "analyzed":
+            continue
+        themes = row.get("themes") or []
+        matched: list[tuple[float, str]] = []
+        for theme in themes:
+            score = float(theme.get("score") or 0)
+            if score < min_score:
+                continue
+            theme_id = str(theme.get("theme_id") or "")
+            family_id = str(theme.get("family_id") or "")
+            if supporting and theme_id not in supporting and family_id not in families:
+                continue
+            if not supporting and not families:
+                continue
+            matched.append((score, theme_id))
+        if not matched:
+            continue
+        best = max(score for score, _ in matched)
+        text = row.get("prepared_text") or row.get("text") or ""
+        candidates.append(
+            (
+                best + 0.1 * float(row.get("frustration_intensity") or 0),
+                {
+                    "feedback_id": row.get("feedback_id"),
+                    "source": row.get("source"),
+                    "created_at": row.get("created_at"),
+                    "quote": text,
+                    "matched_themes": [tid for _, tid in matched[:4]],
+                },
+            )
+        )
+
+    candidates.sort(key=lambda item: item[0], reverse=True)
+
+    # Prefer new quote content; lightly prefer new sources after that.
+    selected_sources = {row.get("source") for row in selected if row.get("source")}
+    deferred: list[dict[str, Any]] = []
+    for _, row in candidates:
+        if len(selected) >= limit:
+            break
+        src = row.get("source")
+        if src and src not in selected_sources:
+            if try_add(row):
+                selected_sources.add(src)
+            continue
+        deferred.append(row)
+    for row in deferred:
+        if len(selected) >= limit:
+            break
+        try_add(row)
+
+    return selected
+
+
 def methodology_sections() -> list[dict[str, str]]:
     return [
         {
@@ -261,6 +392,18 @@ def build_payload() -> dict[str, Any]:
     }
     evidence_rows = collect_evidence_rows(insights, feedback_segments)
 
+    # Expand each Q&A pack with distinct quotes from the enriched corpus.
+    # Fixture packs often repeat one line across sources; after de-dupe that left 1 example.
+    insights = [
+        {
+            **insight,
+            "evidence_pack": (
+                pack := expand_unique_evidence_pack(insight, enriched, limit=5)
+            ),
+            "evidence_ids": [row["feedback_id"] for row in pack if row.get("feedback_id")],
+        }
+        for insight in insights
+    ]
     segment_table = next(
         (i["analysis"]["segment_x_experiment"] for i in insights if i["question_id"] == "Q7"),
         [],
@@ -356,7 +499,9 @@ def build_payload() -> dict[str, Any]:
             "headline": frustration["headline"] if frustration else "",
             "trend": frustration["analysis"].get("month_trend", {}) if frustration else {},
             "ranked": frustration["analysis"].get("top_complaints", []) if frustration else [],
-            "contextualEvidence": frustration["evidence_pack"][:4] if frustration else [],
+            "contextualEvidence": expand_unique_evidence_pack(frustration, enriched, limit=4)
+            if frustration
+            else [],
         },
         "evidenceBrowser": {
             "rows": evidence_rows,

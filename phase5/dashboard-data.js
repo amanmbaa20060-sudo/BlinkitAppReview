@@ -1036,9 +1036,10 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "reddit:t30010",
-        "community_forums:cf-70030",
-        "quick_commerce_discussions:qc-80002",
-        "play_store:ps-10030"
+        "app_store:as-20000",
+        "community_forums:cf-70057",
+        "play_store:ps-10075",
+        "product_reviews:pr-50100"
       ],
       "evidence_pack": [
         {
@@ -1051,30 +1052,43 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "community_forums:cf-70030",
+          "feedback_id": "app_store:as-20000",
+          "source": "app_store",
+          "created_at": "2025-07-16T08:00:00Z",
+          "quote": "Review 0. I reorder the same groceries every week and barely open other categories. [as#0]",
+          "matched_themes": [
+            "habit.same_basket",
+            "habit.low_browse_intent",
+            "habit.autopilot_reorder"
+          ]
+        },
+        {
+          "feedback_id": "community_forums:cf-70057",
           "source": "community_forums",
-          "created_at": "2025-09-25T08:39:21Z",
-          "quote": "Forum topic 10 Same basket every Sunday - milk, eggs, snacks. Routine never changes. [cf#30]",
+          "created_at": "2025-11-28T06:20:45Z",
+          "quote": "Forum topic 19 Saved lists run my shopping. Autopilot reorder means zero browse intent. [cf#57]",
           "matched_themes": [
-            "habit.same_basket"
+            "habit.autopilot_reorder",
+            "habit.low_browse_intent"
           ]
         },
         {
-          "feedback_id": "quick_commerce_discussions:qc-80002",
-          "source": "quick_commerce_discussions",
-          "created_at": "2025-07-21T01:58:37Z",
-          "quote": "Q-commerce thread 2 Same basket every Sunday - milk, eggs, snacks. Routine never changes. [qc#2]",
-          "matched_themes": [
-            "habit.same_basket"
-          ]
-        },
-        {
-          "feedback_id": "play_store:ps-10030",
+          "feedback_id": "play_store:ps-10075",
           "source": "play_store",
-          "created_at": "2025-09-25T08:39:21Z",
-          "quote": "Same basket every Sunday - milk, eggs, snacks. Routine never changes. [ps#30]",
+          "created_at": "2026-01-09T20:48:22Z",
+          "quote": "Support is unreachable; I stick to categories I already trust. [ps#75]",
           "matched_themes": [
             "habit.same_basket"
+          ]
+        },
+        {
+          "feedback_id": "product_reviews:pr-50100",
+          "source": "product_reviews",
+          "created_at": "2026-03-10T00:31:10Z",
+          "quote": "Frequent stockouts push me back to my usual basket. [pr#100]",
+          "matched_themes": [
+            "habit.same_basket",
+            "habit.autopilot_reorder"
           ]
         }
       ],
@@ -1126,9 +1140,10 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "play_store:ps-10090",
-        "app_store:as-20090",
-        "product_reviews:pr-50090",
-        "social_media:sm-60006"
+        "reddit:t30011",
+        "app_store:as-20060",
+        "community_forums:cf-70036",
+        "product_reviews:pr-50035"
       ],
       "evidence_pack": [
         {
@@ -1141,30 +1156,40 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "app_store:as-20090",
+          "feedback_id": "reddit:t30011",
+          "source": "reddit",
+          "created_at": "2025-10-02T10:47:17Z",
+          "quote": "Category expansion discussion 11 Opaque fees make me avoid trying new categories at checkout. [reddit#33]",
+          "matched_themes": [
+            "barrier.price_uncertainty"
+          ]
+        },
+        {
+          "feedback_id": "app_store:as-20060",
           "source": "app_store",
-          "created_at": "2026-02-14T09:08:03Z",
-          "quote": "Review 90. Personal care feels irrelevant to me; relevance doubt is real. [as#90]",
+          "created_at": "2025-12-05T08:28:42Z",
+          "quote": "Review 60. Trust risk stops me from pet supplies - unsure about freshness and authenticity. [as#60]",
+          "matched_themes": [
+            "barrier.trust_risk"
+          ]
+        },
+        {
+          "feedback_id": "community_forums:cf-70036",
+          "source": "community_forums",
+          "created_at": "2025-10-09T13:45:13Z",
+          "quote": "Forum topic 12 I discover products only through search. Homepage banners feel irrelevant. [cf#36]",
           "matched_themes": [
             "barrier.relevance_doubt"
           ]
         },
         {
-          "feedback_id": "product_reviews:pr-50090",
+          "feedback_id": "product_reviews:pr-50035",
           "source": "product_reviews",
-          "created_at": "2026-02-14T09:08:03Z",
-          "quote": "Personal care feels irrelevant to me; relevance doubt is real. [pr#90]",
+          "created_at": "2025-10-07T04:45:54Z",
+          "quote": "Would try baby products but price uncertainty and quality fear hold me back. [pr#35]",
           "matched_themes": [
-            "barrier.relevance_doubt"
-          ]
-        },
-        {
-          "feedback_id": "social_media:sm-60006",
-          "source": "social_media",
-          "created_at": "2025-07-30T13:05:52Z",
-          "quote": "Personal care feels irrelevant to me; relevance doubt is real. [sm#6]",
-          "matched_themes": [
-            "barrier.relevance_doubt"
+            "barrier.trust_risk",
+            "barrier.price_uncertainty"
           ]
         }
       ],
@@ -1218,7 +1243,9 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "reddit:c40008",
-        "social_media:sm-60008"
+        "play_store:ps-10010",
+        "app_store:as-20095",
+        "product_reviews:pr-50065"
       ],
       "evidence_pack": [
         {
@@ -1232,13 +1259,30 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "social_media:sm-60008",
-          "source": "social_media",
-          "created_at": "2025-08-04T07:04:29Z",
-          "quote": "I discover products only through search. Homepage banners feel irrelevant. [sm#8]",
+          "feedback_id": "play_store:ps-10010",
+          "source": "play_store",
+          "created_at": "2025-08-09T00:13:07Z",
+          "quote": "Friend told me about household essentials; word of mouth beats the app. [ps#10]",
           "matched_themes": [
-            "discovery.search_led",
-            "discovery.homepage_banners"
+            "discovery.word_of_mouth"
+          ]
+        },
+        {
+          "feedback_id": "app_store:as-20095",
+          "source": "app_store",
+          "created_at": "2026-02-26T05:14:36Z",
+          "quote": "Review 95. Social proof from deep reviews mattered more than any in-app cue. [as#95]",
+          "matched_themes": [
+            "discovery.social_proof"
+          ]
+        },
+        {
+          "feedback_id": "product_reviews:pr-50065",
+          "source": "product_reviews",
+          "created_at": "2025-12-17T04:35:15Z",
+          "quote": "Recommendations never show adjacent categories - always snacks again. [pr#65]",
+          "matched_themes": [
+            "discovery.recommendations"
           ]
         }
       ],
@@ -1294,7 +1338,11 @@ window.DASHBOARD_DATA = {
         "habit.low_browse_intent"
       ],
       "evidence_ids": [
-        "reddit:t30010"
+        "reddit:t30010",
+        "app_store:as-20000",
+        "community_forums:cf-70057",
+        "play_store:ps-10075",
+        "product_reviews:pr-50100"
       ],
       "evidence_pack": [
         {
@@ -1304,6 +1352,46 @@ window.DASHBOARD_DATA = {
           "quote": "Category expansion discussion 10 Same basket every Sunday - milk, eggs, snacks. Routine never changes. [reddit#30]",
           "matched_themes": [
             "habit.same_basket"
+          ]
+        },
+        {
+          "feedback_id": "app_store:as-20000",
+          "source": "app_store",
+          "created_at": "2025-07-16T08:00:00Z",
+          "quote": "Review 0. I reorder the same groceries every week and barely open other categories. [as#0]",
+          "matched_themes": [
+            "habit.same_basket",
+            "habit.low_browse_intent",
+            "habit.autopilot_reorder"
+          ]
+        },
+        {
+          "feedback_id": "community_forums:cf-70057",
+          "source": "community_forums",
+          "created_at": "2025-11-28T06:20:45Z",
+          "quote": "Forum topic 19 Saved lists run my shopping. Autopilot reorder means zero browse intent. [cf#57]",
+          "matched_themes": [
+            "habit.autopilot_reorder",
+            "habit.low_browse_intent"
+          ]
+        },
+        {
+          "feedback_id": "play_store:ps-10075",
+          "source": "play_store",
+          "created_at": "2026-01-09T20:48:22Z",
+          "quote": "Support is unreachable; I stick to categories I already trust. [ps#75]",
+          "matched_themes": [
+            "habit.same_basket"
+          ]
+        },
+        {
+          "feedback_id": "product_reviews:pr-50100",
+          "source": "product_reviews",
+          "created_at": "2026-03-10T00:31:10Z",
+          "quote": "Frequent stockouts push me back to my usual basket. [pr#100]",
+          "matched_themes": [
+            "habit.same_basket",
+            "habit.autopilot_reorder"
           ]
         }
       ],
@@ -1358,7 +1446,10 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "reddit:c40014",
-        "social_media:sm-60014"
+        "play_store:ps-10015",
+        "app_store:as-20040",
+        "community_forums:cf-70123",
+        "product_reviews:pr-50125"
       ],
       "evidence_pack": [
         {
@@ -1371,12 +1462,40 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "social_media:sm-60014",
-          "source": "social_media",
-          "created_at": "2025-08-18T11:20:21Z",
-          "quote": "Review depth is too thin for categories I have never bought. [sm#14]",
+          "feedback_id": "play_store:ps-10015",
+          "source": "play_store",
+          "created_at": "2025-08-20T20:19:40Z",
+          "quote": "Sizing and pack freshness cues are missing on unfamiliar SKUs. [ps#15]",
+          "matched_themes": [
+            "info.sizing_freshness"
+          ]
+        },
+        {
+          "feedback_id": "app_store:as-20040",
+          "source": "app_store",
+          "created_at": "2025-10-19T00:52:28Z",
+          "quote": "Review 40. Need ingredients and use-case guidance before trying personal care. [as#40]",
+          "matched_themes": [
+            "info.ingredients_use_cases"
+          ]
+        },
+        {
+          "feedback_id": "community_forums:cf-70123",
+          "source": "community_forums",
+          "created_at": "2026-05-03T11:05:20Z",
+          "quote": "Forum topic 41 Social proof from deep reviews mattered more than any in-app cue. [cf#123]",
           "matched_themes": [
             "info.reviews_depth"
+          ]
+        },
+        {
+          "feedback_id": "product_reviews:pr-50125",
+          "source": "product_reviews",
+          "created_at": "2026-05-08T05:03:57Z",
+          "quote": "Want clearer returns and freshness info before a new category trial. [pr#125]",
+          "matched_themes": [
+            "info.sizing_freshness",
+            "info.return_policy"
           ]
         }
       ],
@@ -1431,10 +1550,10 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "play_store:ps-10045",
-        "app_store:as-20045",
-        "product_reviews:pr-50045",
-        "reddit:c40017",
-        "social_media:sm-60017"
+        "app_store:as-20130",
+        "product_reviews:pr-50005",
+        "reddit:c40016",
+        "social_media:sm-60019"
       ],
       "evidence_pack": [
         {
@@ -1447,39 +1566,39 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "app_store:as-20045",
+          "feedback_id": "app_store:as-20130",
           "source": "app_store",
-          "created_at": "2025-10-30T20:59:01Z",
-          "quote": "Review 45. Late delivery twice - not experimenting when ETA slips. [as#45]",
+          "created_at": "2026-05-20T01:10:31Z",
+          "quote": "Review 130. Poor substitutes kill willingness to try unfamiliar items. [as#130]",
           "matched_themes": [
-            "frustration.late_delivery"
+            "frustration.poor_substitutes"
           ]
         },
         {
-          "feedback_id": "product_reviews:pr-50045",
+          "feedback_id": "product_reviews:pr-50005",
           "source": "product_reviews",
-          "created_at": "2025-10-30T20:59:01Z",
-          "quote": "Late delivery twice - not experimenting when ETA slips. [pr#45]",
+          "created_at": "2025-07-28T04:06:33Z",
+          "quote": "Opaque fees make me avoid trying new categories at checkout. [pr#5]",
           "matched_themes": [
-            "frustration.late_delivery"
+            "frustration.opaque_fees"
           ]
         },
         {
-          "feedback_id": "reddit:c40017",
+          "feedback_id": "reddit:c40016",
           "source": "reddit",
-          "created_at": "2025-08-25T14:18:17Z",
-          "quote": "Late delivery twice - not experimenting when ETA slips. [reddit#17]",
+          "created_at": "2025-08-23T05:18:59Z",
+          "quote": "Frequent stockouts push me back to my usual basket. [reddit#16]",
           "matched_themes": [
-            "frustration.late_delivery"
+            "frustration.stockouts"
           ]
         },
         {
-          "feedback_id": "social_media:sm-60017",
+          "feedback_id": "social_media:sm-60019",
           "source": "social_media",
-          "created_at": "2025-08-25T14:18:17Z",
-          "quote": "Late delivery twice - not experimenting when ETA slips. [sm#17]",
+          "created_at": "2025-08-30T07:26:55Z",
+          "quote": "Support is unreachable; I stick to categories I already trust. [sm#19]",
           "matched_themes": [
-            "frustration.late_delivery"
+            "frustration.weak_support"
           ]
         }
       ],
@@ -1555,10 +1674,10 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "play_store:ps-10020",
-        "app_store:as-20020",
-        "product_reviews:pr-50020",
-        "reddit:c40020",
-        "social_media:sm-60020"
+        "app_store:as-20050",
+        "product_reviews:pr-50105",
+        "reddit:c40023",
+        "social_media:sm-60025"
       ],
       "evidence_pack": [
         {
@@ -1571,39 +1690,39 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "app_store:as-20020",
+          "feedback_id": "app_store:as-20050",
           "source": "app_store",
-          "created_at": "2025-09-01T16:26:14Z",
-          "quote": "Review 20. Tried personal care only because of a big discount. Deals drive my trials. [as#20]",
+          "created_at": "2025-11-11T16:15:35Z",
+          "quote": "Review 50. Festival sale made me buy gift hampers outside my usual categories. [as#50]",
           "matched_themes": [
-            "experiment.deal_driven"
+            "experiment.gift_occasion"
           ]
         },
         {
-          "feedback_id": "product_reviews:pr-50020",
+          "feedback_id": "product_reviews:pr-50105",
           "source": "product_reviews",
-          "created_at": "2025-09-01T16:26:14Z",
-          "quote": "Tried personal care only because of a big discount. Deals drive my trials. [pr#20]",
+          "created_at": "2026-03-21T20:37:43Z",
+          "quote": "After we got a puppy I finally opened pet supplies - life event trigger. [pr#105]",
           "matched_themes": [
-            "experiment.deal_driven"
+            "experiment.life_event"
           ]
         },
         {
-          "feedback_id": "reddit:c40020",
+          "feedback_id": "reddit:c40023",
           "source": "reddit",
-          "created_at": "2025-09-01T16:26:14Z",
-          "quote": "Tried personal care only because of a big discount. Deals drive my trials. [reddit#20]",
+          "created_at": "2025-09-08T18:34:10Z",
+          "quote": "Niche diet interest is the only reason I browse beyond groceries. [reddit#23]",
           "matched_themes": [
-            "experiment.deal_driven"
+            "experiment.niche_interest"
           ]
         },
         {
-          "feedback_id": "social_media:sm-60020",
+          "feedback_id": "social_media:sm-60025",
           "source": "social_media",
-          "created_at": "2025-09-01T16:26:14Z",
-          "quote": "Tried personal care only because of a big discount. Deals drive my trials. [sm#20]",
+          "created_at": "2025-09-13T12:32:47Z",
+          "quote": "Assortment feels thin compared to specialty stores. [sm#25]",
           "matched_themes": [
-            "experiment.deal_driven"
+            "experiment.niche_interest"
           ]
         }
       ],
@@ -1698,10 +1817,10 @@ window.DASHBOARD_DATA = {
       ],
       "evidence_ids": [
         "play_store:ps-10110",
-        "app_store:as-20110",
-        "product_reviews:pr-50110",
-        "reddit:c40026",
-        "social_media:sm-60026"
+        "product_reviews:pr-50065",
+        "app_store:as-20025",
+        "reddit:t30009",
+        "social_media:sm-60024"
       ],
       "evidence_pack": [
         {
@@ -1714,39 +1833,39 @@ window.DASHBOARD_DATA = {
           ]
         },
         {
-          "feedback_id": "app_store:as-20110",
-          "source": "app_store",
-          "created_at": "2026-04-02T16:44:17Z",
-          "quote": "Review 110. Cross-category cues are weak; app never nudges adjacent aisles. [as#110]",
-          "matched_themes": [
-            "unmet.weak_cross_category_cues"
-          ]
-        },
-        {
-          "feedback_id": "product_reviews:pr-50110",
+          "feedback_id": "product_reviews:pr-50065",
           "source": "product_reviews",
-          "created_at": "2026-04-02T16:44:17Z",
-          "quote": "Cross-category cues are weak; app never nudges adjacent aisles. [pr#110]",
+          "created_at": "2025-12-17T04:35:15Z",
+          "quote": "Recommendations never show adjacent categories - always snacks again. [pr#65]",
           "matched_themes": [
             "unmet.weak_cross_category_cues"
           ]
         },
         {
-          "feedback_id": "reddit:c40026",
+          "feedback_id": "app_store:as-20025",
+          "source": "app_store",
+          "created_at": "2025-09-13T12:32:47Z",
+          "quote": "Review 25. Assortment feels thin compared to specialty stores. [as#25]",
+          "matched_themes": [
+            "unmet.missing_assortment"
+          ]
+        },
+        {
+          "feedback_id": "reddit:t30009",
           "source": "reddit",
-          "created_at": "2025-09-15T21:32:06Z",
-          "quote": "Cross-category cues are weak; app never nudges adjacent aisles. [reddit#26]",
+          "created_at": "2025-09-18T06:31:24Z",
+          "quote": "Category expansion discussion 9 Weak guidance for first-time buyers in baby and pet. [reddit#27]",
           "matched_themes": [
-            "unmet.weak_cross_category_cues"
+            "unmet.weak_guidance"
           ]
         },
         {
-          "feedback_id": "social_media:sm-60026",
+          "feedback_id": "social_media:sm-60024",
           "source": "social_media",
-          "created_at": "2025-09-15T21:32:06Z",
-          "quote": "Cross-category cues are weak; app never nudges adjacent aisles. [sm#26]",
+          "created_at": "2025-09-11T03:33:28Z",
+          "quote": "No starter kits for new categories. Hard to know what to buy first. [sm#24]",
           "matched_themes": [
-            "unmet.weak_cross_category_cues"
+            "unmet.no_starter_kits"
           ]
         }
       ],
@@ -1927,30 +2046,30 @@ window.DASHBOARD_DATA = {
         ]
       },
       {
-        "feedback_id": "app_store:as-20045",
+        "feedback_id": "app_store:as-20130",
         "source": "app_store",
-        "created_at": "2025-10-30T20:59:01Z",
-        "quote": "Review 45. Late delivery twice - not experimenting when ETA slips. [as#45]",
+        "created_at": "2026-05-20T01:10:31Z",
+        "quote": "Review 130. Poor substitutes kill willingness to try unfamiliar items. [as#130]",
         "matched_themes": [
-          "frustration.late_delivery"
+          "frustration.poor_substitutes"
         ]
       },
       {
-        "feedback_id": "product_reviews:pr-50045",
+        "feedback_id": "product_reviews:pr-50005",
         "source": "product_reviews",
-        "created_at": "2025-10-30T20:59:01Z",
-        "quote": "Late delivery twice - not experimenting when ETA slips. [pr#45]",
+        "created_at": "2025-07-28T04:06:33Z",
+        "quote": "Opaque fees make me avoid trying new categories at checkout. [pr#5]",
         "matched_themes": [
-          "frustration.late_delivery"
+          "frustration.opaque_fees"
         ]
       },
       {
-        "feedback_id": "reddit:c40017",
+        "feedback_id": "reddit:c40016",
         "source": "reddit",
-        "created_at": "2025-08-25T14:18:17Z",
-        "quote": "Late delivery twice - not experimenting when ETA slips. [reddit#17]",
+        "created_at": "2025-08-23T05:18:59Z",
+        "quote": "Frequent stockouts push me back to my usual basket. [reddit#16]",
         "matched_themes": [
-          "frustration.late_delivery"
+          "frustration.stockouts"
         ]
       }
     ]

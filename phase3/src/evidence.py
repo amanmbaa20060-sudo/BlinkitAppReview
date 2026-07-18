@@ -98,23 +98,45 @@ def retrieve_evidence(
 
     candidates.sort(key=lambda x: x[0], reverse=True)
 
-    # Prefer multi-source diversity
+    def _norm_quote(text: str) -> str:
+        import re
+
+        cleaned = str(text or "").strip().lower()
+        cleaned = re.sub(r"\[[a-z0-9_#:.-]+\]", " ", cleaned)
+        cleaned = re.sub(
+            r"^(?:review|forum topic|category expansion discussion|q-commerce thread|reddit)\s*\d+[.:]?\s*",
+            "",
+            cleaned,
+        )
+        return re.sub(r"\s+", " ", cleaned).strip(" .:;-")
+
+    # Prefer unique quote content first, then multi-source diversity.
     selected: list[dict[str, Any]] = []
+    seen_quotes: set[str] = set()
     seen_sources: set[str] = set()
     remainder: list[dict[str, Any]] = []
     for _, item in candidates:
+        key = _norm_quote(item.get("text") or "")
+        if not key or key in seen_quotes:
+            remainder.append(item)
+            continue
         src = item.get("source") or "unknown"
         if src not in seen_sources and len(selected) < limit:
             selected.append(item)
+            seen_quotes.add(key)
             seen_sources.add(src)
         else:
             remainder.append(item)
     for item in remainder:
         if len(selected) >= limit:
             break
+        key = _norm_quote(item.get("text") or "")
+        if not key or key in seen_quotes:
+            continue
         if item["feedback_id"] in {s["feedback_id"] for s in selected}:
             continue
         selected.append(item)
+        seen_quotes.add(key)
     return selected
 
 

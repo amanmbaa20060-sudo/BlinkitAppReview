@@ -86,6 +86,31 @@ function formatDate(value) {
   });
 }
 
+function normalizeEvidenceQuote(quote) {
+  return String(quote || "")
+    .toLowerCase()
+    .replace(/\[[a-z0-9_#:.-]+\]/gi, " ")
+    .replace(
+      /^(?:review|forum topic|category expansion discussion|q-commerce thread|reddit)\s*\d+[.:]?\s*/i,
+      ""
+    )
+    .replace(/\s+/g, " ")
+    .replace(/^[ .:;-]+|[ .:;-]+$/g, "")
+    .trim();
+}
+
+function uniqueEvidencePack(evidencePack) {
+  const unique = [];
+  const seen = new Set();
+  for (const row of evidencePack || []) {
+    const key = normalizeEvidenceQuote(row.quote);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    unique.push(row);
+  }
+  return unique;
+}
+
 function metricCard(title, value, caption) {
   return `
     <article class="stat-card">
@@ -611,6 +636,7 @@ function updateActiveView() {
 function openInsightModal(insightId) {
   const insight = data.discoveryQna.find((item) => item.insight_id === insightId);
   if (!insight) return;
+  const evidencePack = uniqueEvidencePack(insight.evidence_pack);
   els.modalContent.innerHTML = `
     <h2>${insight.question_id}: ${insight.headline}</h2>
     <p>${insight.implication}</p>
@@ -620,7 +646,7 @@ function openInsightModal(insightId) {
       ${insight.supporting_themes.map((theme) => `<span class="chip">${titleCase(theme.split(".")[1])}</span>`).join("")}
     </div>
     <div class="evidence-list" style="margin-top:20px">
-      ${insight.evidence_pack
+      ${evidencePack
         .map(
           (row) => `
           <article class="evidence-row">
@@ -629,7 +655,7 @@ function openInsightModal(insightId) {
               <span>${formatDate(row.created_at)}</span>
             </div>
             <blockquote>${row.quote}</blockquote>
-            <div class="chip-row">${row.matched_themes.map((theme) => `<span class="chip">${titleCase(theme.split(".")[1])}</span>`).join("")}</div>
+            <div class="chip-row">${(row.matched_themes || []).map((theme) => `<span class="chip">${titleCase(theme.split(".")[1])}</span>`).join("")}</div>
           </article>
         `
         )
@@ -725,18 +751,21 @@ function buildFullExportPayload() {
         source_mix: data.themeExplorer.sourceMix,
         trend_by_month: data.themeExplorer.trendByMonth,
       },
-      discovery_qna: data.discoveryQna.map((insight) => ({
-        question_id: insight.question_id,
-        insight_id: insight.insight_id,
-        question: insight.analysis?.question || null,
-        headline: insight.headline,
-        implication: insight.implication,
-        confidence_pct: Math.round(insight.confidence * 1000) / 10,
-        status: insight.status,
-        supporting_themes: insight.supporting_themes,
-        evidence_ids: insight.evidence_ids,
-        evidence_pack: insight.evidence_pack,
-      })),
+      discovery_qna: data.discoveryQna.map((insight) => {
+        const evidencePack = uniqueEvidencePack(insight.evidence_pack);
+        return {
+          question_id: insight.question_id,
+          insight_id: insight.insight_id,
+          question: insight.analysis?.question || null,
+          headline: insight.headline,
+          implication: insight.implication,
+          confidence_pct: Math.round(insight.confidence * 1000) / 10,
+          status: insight.status,
+          supporting_themes: insight.supporting_themes,
+          evidence_ids: evidencePack.map((row) => row.feedback_id),
+          evidence_pack: evidencePack,
+        };
+      }),
       segment_lens: {
         callout: data.segmentLens.callout,
         experiment_rates: data.segmentLens.segmentRates.map((segment) => ({
