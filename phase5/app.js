@@ -123,6 +123,10 @@ function buildSelectOptions(select, options, includeAll = true, allLabel = "All"
 
 function syncControls() {
   els.runId.textContent = `Run: ${data.meta.run_id}`;
+  const buildMeta = document.querySelector('meta[name="dashboard-build"]');
+  if (buildMeta && buildMeta.content) {
+    els.runId.title = `Build ${buildMeta.content}`;
+  }
   els.runStatus.textContent = data.meta.status;
 
   buildSelectOptions(els.filterSource, data.controls.sources, true, "All sources");
@@ -1216,8 +1220,13 @@ async function loadLlmStatus() {
   const notes = [];
 
   try {
+    const buildMeta = document.querySelector('meta[name="dashboard-build"]');
+    const stamp = buildMeta && buildMeta.content ? buildMeta.content : null;
+    const statusUrl = stamp
+      ? `/llm-status.${stamp}.json?t=${Date.now()}`
+      : `/llm-status.json?t=${Date.now()}`;
     // Always visible in DevTools → Network (static provenance from pipeline).
-    artifactStatus = await fetchJson(`/llm-status.json?v=5&t=${Date.now()}`);
+    artifactStatus = await fetchJson(statusUrl);
     notes.push(artifactStatus.summary || "Loaded llm-status.json");
   } catch (error) {
     notes.push(`llm-status.json failed: ${error.message || error}`);
