@@ -4,7 +4,7 @@ window.DASHBOARD_DATA = {
     "run_id": "2026-07-16-weekly",
     "status": "Published insights",
     "published_count": 8,
-    "confidence_score": 89.2,
+    "confidence_score": 56.1,
     "records_analyzed": 1070,
     "evidence_total": 27,
     "date_range": {
@@ -1079,7 +1079,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "Interrupt autopilot reorder flows with adjacent-category nudges to increase new-category trial for MACs",
-      "confidence": 0.892,
+      "confidence": 0.6604,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1103,10 +1103,10 @@ window.DASHBOARD_DATA = {
         ],
         "question": "Why do users repeatedly buy from the same categories?"
       },
-      "source_diversity": 5,
+      "source_diversity": 4,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.772,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1169,7 +1169,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "Address relevance doubts to encourage MACs to try new categories, enhancing category expansion",
-      "confidence": 0.892,
+      "confidence": 0.6467,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1193,10 +1193,10 @@ window.DASHBOARD_DATA = {
         ],
         "question": "What prevents users from exploring new categories?"
       },
-      "source_diversity": 5,
+      "source_diversity": 4,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.756,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1243,7 +1243,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "To increase new-category trial for MACs, prioritize search-adjacent surfaces for category expansion",
-      "confidence": 0.892,
+      "confidence": 0.3336,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1272,10 +1272,10 @@ window.DASHBOARD_DATA = {
         ],
         "question": "How do users discover products today?"
       },
-      "source_diversity": 5,
+      "source_diversity": 2,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.447,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1308,7 +1308,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "To drive category expansion, leverage existing reorder journeys with add-on suggestions, as customers tend to stick to their routine purchases, such as same basket every Sunday",
-      "confidence": 0.892,
+      "confidence": 0.3029,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1334,10 +1334,10 @@ window.DASHBOARD_DATA = {
         ],
         "question": "What role do habits play in shopping behavior?"
       },
-      "source_diversity": 5,
+      "source_diversity": 1,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.438,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1381,7 +1381,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "Equip new categories with deeper reviews to lower trial threshold for MACs and drive category expansion",
-      "confidence": 0.892,
+      "confidence": 0.3485,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1406,10 +1406,10 @@ window.DASHBOARD_DATA = {
         ],
         "question": "What information do users need before trying a new category?"
       },
-      "source_diversity": 5,
+      "source_diversity": 2,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.467,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1484,7 +1484,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "Fix late delivery issues to increase willingness of MACs to try new categories",
-      "confidence": 0.892,
+      "confidence": 0.7043,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1534,7 +1534,7 @@ window.DASHBOARD_DATA = {
       "source_diversity": 5,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.774,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1608,7 +1608,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "Prioritize category-expansion campaigns toward deal-sensitive segments to increase new-category trial behavior among MACs",
-      "confidence": 0.892,
+      "confidence": 0.7444,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1677,7 +1677,7 @@ window.DASHBOARD_DATA = {
       "source_diversity": 5,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.818,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,
@@ -1751,7 +1751,7 @@ window.DASHBOARD_DATA = {
         }
       ],
       "implication": "Improve cross-category cues to facilitate new-category trial for MACs",
-      "confidence": 0.892,
+      "confidence": 0.7508,
       "status": "published",
       "insufficient_evidence": false,
       "analysis": {
@@ -1823,7 +1823,7 @@ window.DASHBOARD_DATA = {
       "source_diversity": 5,
       "synthesis_source": "groq_llm",
       "llm_model": "llama-3.3-70b-versatile",
-      "confidence_provisional": 1.0,
+      "confidence_provisional": 0.825,
       "cross_source_weight": 1.0,
       "faithfulness": {
         "faithful": true,

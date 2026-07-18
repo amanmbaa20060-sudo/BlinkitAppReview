@@ -324,7 +324,7 @@ function renderDiscoveryQna() {
               ${insight.supporting_themes.slice(0, 3).map((theme) => `<span class="chip">${titleCase(theme.split(".")[1])}</span>`).join("")}
             </div>
             <div class="confidence">
-              <div class="theme-header"><span>Confidence</span><strong>${Math.round(insight.confidence * 100)}%</strong></div>
+              <div class="theme-header"><span>Confidence</span><strong>${(insight.confidence * 100).toFixed(1)}%</strong></div>
               <div class="bar-track"><div class="bar-fill" style="width:${pct(insight.confidence)}"></div></div>
             </div>
             <button class="outline-button" data-open-insight="${insight.insight_id}">Evidence</button>
@@ -618,7 +618,7 @@ function openInsightModal(insightId) {
     <p>${insight.implication}</p>
     <div class="chip-row">
       <span class="chip status">${titleCase(insight.status)}</span>
-      <span class="chip">Confidence ${Math.round(insight.confidence * 100)}%</span>
+      <span class="chip">Confidence ${(insight.confidence * 100).toFixed(1)}%</span>
       ${insight.supporting_themes.map((theme) => `<span class="chip">${titleCase(theme.split(".")[1])}</span>`).join("")}
     </div>
     <div class="evidence-list" style="margin-top:20px">

@@ -19,14 +19,36 @@ def provisional_confidence(
     theme_volume: int,
     source_count: int,
     analyzable_count: int,
+    theme_breadth: int = 0,
+    severity_score: float = 0.0,
 ) -> float:
-    """Provisional score for Phase 4 finalization."""
+    """Provisional score for Phase 4 finalization.
+
+    Uses log-scaled theme volume plus evidence/source depth so Q1–Q8
+    land in different bands instead of saturating together.
+    """
+    import math
+
     if evidence_count == 0 or theme_volume == 0:
         return 0.2
-    vol = min(1.0, theme_volume / max(analyzable_count * 0.05, 1))
-    evid = min(1.0, evidence_count / 5)
-    src = min(1.0, source_count / 4)
-    return round(0.35 * vol + 0.35 * evid + 0.30 * src, 3)
+
+    corpus = max(analyzable_count, 1)
+    vol = min(1.0, math.log1p(theme_volume) / math.log1p(max(corpus * 0.35, 20.0)))
+    evid = min(1.0, evidence_count / 6.0)
+    src = min(1.0, source_count / 6.0)
+    depth = min(1.0, (evidence_count * max(source_count, 1)) / 18.0)
+    sev = min(1.0, severity_score / 4.0)
+    breadth = min(1.0, theme_breadth / 5.0)
+
+    score = (
+        0.22 * vol
+        + 0.30 * evid
+        + 0.20 * src
+        + 0.10 * depth
+        + 0.12 * sev
+        + 0.06 * breadth
+    )
+    return round(max(0.34, min(0.95, score)), 3)
 
 
 def refine_with_groq(
@@ -102,23 +124,17 @@ def build_insight(
     question_text: str | None = None,
 ) -> dict[str, Any]:
     evidence_ids = [e["feedback_id"] for e in evidence]
-    src_count = source_diversity(evidence)
-    confidence = provisional_confidence(
-        evidence_count=len(evidence_ids),
-        theme_volume=theme_volume,
-        source_count=src_count,
-        analyzable_count=analyzable_count,
-    )
     insufficient = len(evidence_ids) == 0 or theme_volume == 0
     synthesis_meta = {"synthesis_source": "template", "llm_model": None}
+    headline_out = headline
+    implication_out = implication
 
     if insufficient:
-        headline = f"Insufficient evidence to answer {question_id} from current corpus"
-        implication = (
+        headline_out = f"Insufficient evidence to answer {question_id} from current corpus"
+        implication_out = (
             "Do not prioritize category-expansion actions for this question until more "
             "multi-source feedback is available; avoid inventing drivers of new-category trial."
         )
-        confidence = min(confidence, 0.25)
     elif use_llm and evidence:
         try:
             refined = refine_with_groq(
@@ -129,8 +145,8 @@ def build_insight(
                 draft_headline=headline,
                 draft_implication=implication,
             )
-            headline = refined["headline"]
-            implication = refined["implication"]
+            headline_out = refined["headline"]
+            implication_out = refined["implication"]
             # Keep original evidence pack; optionally reorder by used ids
             used = refined.get("used_evidence_ids") or evidence_ids
             evidence_ids = used
@@ -148,10 +164,25 @@ def build_insight(
         ordered_evidence = evidence
         evidence_ids = [e["feedback_id"] for e in evidence]
 
+    # Score confidence from the FINAL evidence pack (not the pre-LLM candidate set).
+    src_count = source_diversity(ordered_evidence)
+    ranking = (analysis or {}).get("theme_ranking") or []
+    severity_score = sum(float(item.get("severity_score") or 0.0) for item in ranking[:5])
+    confidence = provisional_confidence(
+        evidence_count=len(evidence_ids),
+        theme_volume=theme_volume,
+        source_count=src_count,
+        analyzable_count=analyzable_count,
+        theme_breadth=len(supporting_themes or []),
+        severity_score=severity_score,
+    )
+    if insufficient:
+        confidence = min(confidence, 0.25)
+
     return {
         "insight_id": insight_id,
         "question_id": question_id,
-        "headline": headline,
+        "headline": headline_out,
         "supporting_themes": supporting_themes,
         "evidence_ids": evidence_ids,
         "evidence_pack": [
@@ -164,7 +195,7 @@ def build_insight(
             }
             for e in ordered_evidence
         ],
-        "implication": implication,
+        "implication": implication_out,
         "confidence": confidence,
         "status": "draft",
         "insufficient_evidence": insufficient,

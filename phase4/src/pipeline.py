@@ -63,12 +63,14 @@ def run_phase4(run_id: str = "2026-07-16-weekly") -> dict[str, Any]:
     )
     baseline = build_drift_baseline(enriched, run_id)
 
+    analyzable_count = sum(1 for row in enriched if row.get("analysis_status") == "analyzed")
     gated = finalize_and_gate(
         drafts_in,
         faithfulness_results=faith["results"],
         cross_source_adjustments=xsrc["insight_adjustments"],
         sampling_precision=float(qa["precision"]),
         publish_cfg=gov["publish"],
+        analyzable_count=analyzable_count,
     )
 
     published_questions = sorted({i["question_id"] for i in gated["published"]})
